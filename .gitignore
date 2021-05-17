@@ -1,0 +1,17 @@
+.classpath
+.settings
+.project
+.vscode
+.idea
+.sass-cache
+.gradle
+node_modules
+
+*.iml
+**/*.log
+target/
+build/
+jar/
+
+src/main/resources/webroot/static/script/
+src/main/resources/webroot/static/style/
