@@ -12,6 +12,7 @@ node_modules
 target/
 build/
 jar/
+data/
 
 src/main/resources/webroot/static/script/
 src/main/resources/webroot/static/style/
