@@ -72,8 +72,8 @@ public class EmbeddedDatabaseUserModel
 			return false;
 		}
 
-		BCrypt.verifyer()
-				.verify(withPassword.toCharArray(), passwordHash.toCharArray());
-		return false;
+		return BCrypt.verifyer()
+				.verify(withPassword.toCharArray(), passwordHash.toCharArray())
+				.verified;
 	}
 }
