@@ -1,0 +1,66 @@
+$color-blue: #244C88;
+$color-light-gray: #f2f3f3;
+$color-lighter-gray: #fbfbfc;
+$color-white: #fff;
+$color-green: #2dbc4e;
+$color-red: #af1629;
+$color-orange: #F05E23;
+$color-black: #222;
+
+$text-white-primary: #fff;
+$text-white-secondary: #fbfbfc;
+
+$text-black-primary: rgba(0,0,0,0.84);
+$text-black-secondary: rgba(0,0,0,0.54);
+
+$accessibility-indicator: red;
+
+html {
+    background-color: $color-light-gray;
+    color: $text-black-primary;
+}
+
+*[data-hue=background] {
+    background-color: $color-light-gray;
+    color: $text-black-primary;
+    fill: $text-black-primary;
+}
+
+*[data-hue=foreground] {
+    background-color: $color-lighter-gray;
+    color: $text-black-primary;
+    fill: $text-black-primary;
+}
+
+*[data-hue=primary] {
+    background-color: $color-blue;
+    color: $text-white-primary;
+    fill: $text-white-primary;
+}
+
+*[data-hue=accent] {
+    background-color: $color-orange;
+    color: $text-white-primary;
+    fill: $text-white-primary;
+}
+
+*[data-hue=positive] {
+    background-color: $color-green;
+    color: $text-white-primary;
+    fill: $text-white-primary;
+}
+
+*[data-hue=negative] {
+    background-color: $color-red;
+    color: $text-white-primary;
+    fill: $text-white-primary;
+}
+
+@import "./mixins/transitions";
+
+@import "./ddlscript/components/inputs"
+        , "./ddlscript/components/button";
+
+.ddlscript {
+    @import "./ddlscript/component";
+}

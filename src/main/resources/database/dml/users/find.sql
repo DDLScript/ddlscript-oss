@@ -1,0 +1,10 @@
+SELECT TIMESTAMP_CREATED
+        , TIMESTAMP_ARCHIVED
+        , ID
+        , NAME
+        , USERNAME
+        , EMAIL
+        , ADMINISTRATOR
+        , PASSWORD_HASH
+FROM `User`
+WHERE ID = ?

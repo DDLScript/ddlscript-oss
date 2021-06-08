@@ -1,0 +1,2 @@
+DELETE FROM `Session`
+WHERE TOKEN = ?

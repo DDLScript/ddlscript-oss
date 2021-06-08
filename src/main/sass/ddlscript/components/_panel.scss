@@ -1,0 +1,12 @@
+&-panel {
+    border-radius: 4px;
+    border: 1px solid $color-light-gray;
+    box-shadow: 0 0.125rem 0.125rem 0 rgb(0 0 0 / 35%), 0 0.1875rem 0.0625rem -0.125rem rgb(0 0 0 / 35%), 0 0.0625rem 0.3125rem 0 rgb(0 0 0 / 35%);
+
+    &-title {
+        font-size: 18px;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid $color-light-gray;
+    }
+}

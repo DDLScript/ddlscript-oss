@@ -1,16 +1,16 @@
 package com.ddlscript;
 
-import com.ddlscript.repository.embedded.EmbeddedDataSourceBuilder;
+import com.ddlscript.factories.DataSourceFactory;
 import com.ddlscript.repository.embedded.EmbeddedDatabaseMutator;
-import com.ddlscript.repository.embedded.EmbeddedServerBuilder;
-import com.ddlscript.utils.PropertiesUtils;
+import com.ddlscript.routes.ApplicationRoute;
+import com.ddlscript.routes.api.sessions.DeleteSessionRoute;
+import com.ddlscript.routes.api.sessions.GetSessionRoute;
+import com.ddlscript.routes.api.sessions.PostSessionRoute;
 import lombok.experimental.UtilityClass;
-import org.h2.tools.Server;
+import org.eclipse.jetty.http.HttpStatus;
+import spark.Route;
+import spark.Spark;
 
-import javax.sql.DataSource;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Properties;
 import java.util.logging.Logger;
 
 @UtilityClass
@@ -21,10 +21,6 @@ public class Application {
 	 */
 	private static final Logger LOGGER = Logger.getLogger(Application.class.getName());
 
-	private Server databaseServer;
-
-	private DataSource dataSource;
-
 	/**
 	 * Main entry point for the application.
 	 *
@@ -34,48 +30,55 @@ public class Application {
 	public void main(String... args) {
 		LOGGER.info("Starting DDL Script Webserver");
 
-		Runtime.getRuntime()
-				.addShutdownHook(new DatabaseShutdownThread());
+		EmbeddedDatabaseMutator.update(DataSourceFactory.INSTANCE.getDataSource());
 
-		Application.databaseServer = startDatabaseServer();
-		Application.dataSource = createDataSource();
-		EmbeddedDatabaseMutator.update(Application.dataSource);
+		Application.initializeRoutes();
 	}
 
-	private Server startDatabaseServer() {
-		LOGGER.info("Starting Embedded Database Server");
-		try {
-			return EmbeddedServerBuilder.builder()
-					//.allowOthers()
-					.build()
-					.start();
-		} catch (SQLException ex) {
-			throw new RuntimeException(ex);
-		}
+	/**
+	 * Set up the Spark routes.
+	 */
+	private void initializeRoutes() {
+		Spark.staticFiles.location("/webroot");
+
+		Spark.exception(Exception.class, (exception, request, response) -> {
+			exception.printStackTrace();
+		});
+
+		initializeApiRoutes();
+
+		// default application - routing is handled on the browser-side
+		// this MUST be the last route defined
+		Spark.get("/*", new ApplicationRoute());
+
+		// Log the port number
+		Logger.getGlobal()
+				.info(String.join(System.lineSeparator()
+						, "Application is running on port: " + Spark.port()
+						, "\tRest API Documentation: http://localhost:" + Spark.port() + "/"
+				));
 	}
 
-	private DataSource createDataSource() {
-		LOGGER.info("Creating DataSource Connection");
-		try {
-			Properties properties = PropertiesUtils.fromResources("./datasources/embedded.properties");
-			return EmbeddedDataSourceBuilder.fromProperties(properties)
-					.build();
-		} catch (IOException ex) {
-			throw new RuntimeException(ex);
-		}
-	}
+	private void initializeApiRoutes() {
+		Spark.path("/api", () -> {
+			Spark.path("/session", () -> {
+				Spark.get("", new GetSessionRoute());
+				Spark.post("", new PostSessionRoute());
+				Spark.delete("", new DeleteSessionRoute());
+			});
 
-	public static class DatabaseShutdownThread extends Thread {
-		@Override
-		public void run() {
-			super.run();
-			LOGGER.info("Stopping Embedded Database Server");
 
-			if (Application.databaseServer == null) {
-				return;
-			}
-
-			Application.databaseServer.stop();
-		}
+			// Default API endpoint
+			Route apiNotFound = (request, response) -> {
+				response.status(HttpStatus.NOT_FOUND_404);
+				return "{\"error\":\"not-found\"}";
+			};
+			Spark.get("/*", apiNotFound);
+			Spark.post("/*", apiNotFound);
+			Spark.put("/*", apiNotFound);
+			Spark.patch("/*", apiNotFound);
+			Spark.delete("/*", apiNotFound);
+			Spark.head("/*", apiNotFound);
+		});
 	}
 }

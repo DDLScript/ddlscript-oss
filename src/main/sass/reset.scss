@@ -1,0 +1,228 @@
+* {
+	box-sizing: border-box;
+
+	color: inherit;
+	fill: inherit;
+}
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i, a,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, main, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:inherit;
+    font-weight:inherit;
+    vertical-align:baseline;
+    background:transparent;
+	color:inherit;
+
+    -webkit-background-clip: padding-box;
+    -moz-background-clip:    padding;
+    background-clip:         padding-box;
+}
+
+html, body {
+
+	font-family:  "Helvetica Neue", "Calibri Light", "Roboto", sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: greyscale;
+	letter-spacing: 0.02rem;
+
+    font-size: 11pt; /* 1 */
+    -webkit-text-size-adjust: 11pt; /* 2 */
+    -ms-text-size-adjust: 11pt; /* 2 */
+
+	-webkit-appearance:none;
+}
+
+@media (pointer: fine) {
+	html,body {
+		font-size: 10pt; /* 1 */
+		-webkit-text-size-adjust: 10pt; /* 2 */
+		-ms-text-size-adjust: 10pt; /* 2 */
+	}
+}
+
+textarea {
+	font-family: "Helvetica Neue", "Calibri Light", "Roboto", sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	tab-size: 4;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+	display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+	text-decoration:none;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    margin:0;
+    padding:0;
+}
+
+input, select, button, textarea {
+    vertical-align:middle;
+	border:0;
+	outline:0;
+	background:0;
+	font-size:1rem;
+}
+
+select {
+	background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHBvbHlnb24gY2xhc3M9ImNscy0yIiBwb2ludHM9IjEuNDEgNC42NyAyLjQ4IDMuMTggMy41NCA0LjY3IDEuNDEgNC42NyIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIzLjU0IDUuMzMgMi40OCA2LjgyIDEuNDEgNS4zMyAzLjU0IDUuMzMiLz48L3N2Zz4=) no-repeat calc(100% - 1rem) 50%;
+
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+
+}
+
+button {
+	padding:0;
+}
+
+
+input[type=radio],
+input[type=checkbox] {
+	display: none;
+
+	& + svg {
+		display: inline-block;
+		height: 1.5rem;
+	}
+
+	& + svg + svg {
+		display: none;
+		height: 1.5rem;
+	}
+
+	&:checked + svg {
+		display:none;
+	}
+
+	&:checked + svg + svg {
+		display: inline-block;
+	}
+}
+
+strong {
+	font-weight: 800;
+}
+
+
+/* CLEARFIX GROUP */
+.group:after {
+	visibility: hidden;
+	display: block;
+	content: "";
+	clear: both;
+	height: 0;
+	}
+* html .group             { zoom: 1; } /* IE6 */
+*:first-child+html .group { zoom: 1; } /* IE7 */
+
+/* ANCHOR TARGETS */
+.x-target {
+    display:none;
+}
+
+/* HIDDEN */
+.hidden {
+	display:none !important;
+}
+
+@-webkit-keyframes autofill {
+	to {
+		color: inherit;
+		background: transparent;
+	}
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+	-webkit-animation-name: autofill;
+	-webkit-animation-fill-mode: both;
+}
+
+svg {
+	fill: inherit;
+}
+
+fieldset {
+
+    margin: 1rem 0;
+
+	> legend {
+		margin: 1rem 0 0.5rem;
+		display: block;
+		position: relative;
+		width: 100%;
+		font-weight: 600;
+
+	}
+}
+
+* html .v3-cFormField > legend             { zoom: 1; } /* IE6 */
+*:first-child+html .v3-cFormField > legend { zoom: 1; } /* IE7 */

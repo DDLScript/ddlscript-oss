@@ -1,0 +1,7 @@
+SELECT TIMESTAMP_CREATED
+        , TOKEN
+        , USER_ID
+
+FROM `Session`
+
+WHERE TOKEN = ?
