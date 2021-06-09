@@ -2,23 +2,23 @@
 	<!-- Logo -->
 	<svg-logo />
 
-	<!-- Loading -->
-	<div v-if="is.loading" style="display:flex;justify-content:center;margin:4rem 2rem;">
-		<ddlscript-component-busyspinner />
-	</div>
-
 	<!-- Sign In Form -->
-	<div class='auth' v-if="!is.loading">
+	<div class='auth'>
 		<ddlscript-component-panel hue="foreground" title="Sign in to your account.">
+
+			<div v-if="messages.error" data-hue="negative" style="text-align:center; padding: 1rem;">
+				{{ messages.error }}
+			</div>
+
 			<div style="padding:0 1rem">
 				<!-- field: username -->
 				<ddlscript-component-formfield title="Username" for="username" >
-					<ddlscript-component-input-textfield type='text' id='username' :value="username" placeholder="(eg your.name)" @updatevalue="username = $event" />
+					<ddlscript-component-input-textfield type='text' id='username' :value="credentials.username" placeholder="(eg your.name)" @updatevalue="credentials.username = $event" />
 				</ddlscript-component-formfield>
 
 				<!-- field: password -->
 				<ddlscript-component-formfield title="Password" for="password" >
-					<ddlscript-component-input-textfield type='password' id='password' :value="password" placeholder="(at least 8 characters)" @updatevalue="password = $event" />
+					<ddlscript-component-input-textfield type='password' id='password' :value="credentials.password" placeholder="(at least 8 characters)" @updatevalue="credentials.password = $event" />
 				</ddlscript-component-formfield>
 
 				<!-- button: submit -->
@@ -40,7 +40,6 @@ import PanelComponent from "./components/panel.vue";
 import FormFieldComponent from "./components/formfield.vue";
 import TextFieldInputComponent from "./components/inputs/textfield.vue";
 import ButtonComponent from "./components/button.vue";
-import BusySpinnerComponent from "./components/busyspinner.vue";
 import LogoSvg from "./svgs/logo.vue";
 
 import DDLScript from "./api";
@@ -53,30 +52,33 @@ export default {
 		'ddlscript-component-formfield': FormFieldComponent,
 		'ddlscript-component-input-textfield': TextFieldInputComponent,
 		'ddlscript-component-button': ButtonComponent,
-		"ddlscript-component-busyspinner": BusySpinnerComponent,
 		'svg-logo': LogoSvg,
 	},
 
 	mounted: () => {
-		console.log("MOUNTED");
-
-		document.querySelector("html").setAttribute("data-hue", "primary");
+		document.querySelector("html")
+				.setAttribute("data-hue", "primary");
 
 	},
 
 	computed: {
 		canSubmit() {
-			return !this.is.submitting && this.username.length >= 1 && this.password.length >= 8;
+			return !this.is.submitting && this.credentials.username.length >= 1 && this.credentials.password.length >= 8;
 		}
 	},
 
 	data: () => ({
 		is: {
-			loading: false,
-			submitting: false
+			submitting: false,
+			failed: true
 		},
-		username: "",
-		password: ""
+		messages: {
+			error: ""
+		},
+		credentials: {
+			username: "",
+			password: ""
+		}
 	}),
 
 	methods: {
@@ -84,24 +86,19 @@ export default {
 			if (!this.canSubmit) return;
 
 			this.is.submitting = true;
-			console.log(this.username + " " + this.password);
+			this.messages.error = "";
 
 			try {
-				var response = await DDLScript.api.session.post({
-					username: this.username
-					, password: this.password
-				});
+				// start a new session
+				await DDLScript.api.session.post(this.credentials);
 
-				console.log(response);
+				// reload the page
+				window.location.reload();
 			} catch (err) {
-				console.error(err);
-
+				// faild to create a new session
 				this.is.submitting = false;
+				this.messages.error = "Failed To Sign In";
 			}
-		},
-
-		reloadPage() {
-			window.location.reload();
 		}
 	}
 };
