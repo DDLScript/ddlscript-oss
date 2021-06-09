@@ -3,6 +3,10 @@
 
 export default (DDLScript) => ({
 
+	get: async () => await DDLScript.get(
+		"/session"
+	),
+
 	post: async (payload) => await DDLScript.post(
 		"/session"
 		, null

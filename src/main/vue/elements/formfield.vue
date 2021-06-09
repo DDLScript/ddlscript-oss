@@ -1,5 +1,5 @@
 <template>
-	<fieldset class='ddlscript-component-formfield'>
+	<fieldset class='ddlscript-element-formfield'>
 		<!-- FIELD LABEL -->
 		<legend v-if="title.length">
 			<label :for="this.for">{{ title }}</label>
@@ -13,7 +13,7 @@
 <script>
 export default {
 
-	name: "ddlscript-component-formfield"
+	name: "ddlscript-element-formfield"
 
 	, props: {
 		title: { type:String, default: "" }

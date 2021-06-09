@@ -1,6 +1,32 @@
+:root {
+    --color-primary: #244c88;
+    --color-background: #f3f2ef;
+    --color-foreground: #fff;
+    --color-positive: #2dbc4e;
+    --color-warning: #F05E23;
+    --color-negative: #af1629;
+    --color-accessibility: red;
+
+    --text-white-primary: #fff;
+    --text-white-secondary: #fbfbfc;
+
+    --text-black-primary: rgba(0,0,0,0.84);
+    --text-black-secondary: rgba(0,0,0,0.54);
+
+    --text-color-primary: var(--text-black-primary);
+    --text-color-secondary: var(--text-black-secondary);
+
+    --font-weight-normal: 500;
+    --font-weight-bold: 700;
+
+    --font-size-baseline: 12px;
+    --font-size-normal: 1.6rem;
+}
+
+
 $color-blue: #244C88;
-$color-light-gray: #f2f3f3;
-$color-lighter-gray: #fbfbfc;
+$color-light-gray: #f3f2ef;
+$color-lighter-gray: #fff;
 $color-white: #fff;
 $color-green: #2dbc4e;
 $color-red: #af1629;
@@ -15,52 +41,77 @@ $text-black-secondary: rgba(0,0,0,0.54);
 
 $accessibility-indicator: red;
 
+@import "./reset.scss";
+
 html {
-    background-color: $color-light-gray;
-    color: $text-black-primary;
+    --text-color-primary: var(--text-black-primary);
+    --text-color-secondary: var(--text-black-secondary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
 }
 
 *[data-hue=background] {
-    background-color: $color-light-gray;
-    color: $text-black-primary;
-    fill: $text-black-primary;
+    --text-color-primary: var(--text-black-primary);
+    --text-color-secondary: var(--text-black-secondary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
 }
 
 *[data-hue=foreground] {
-    background-color: $color-lighter-gray;
-    color: $text-black-primary;
-    fill: $text-black-primary;
+    --text-color-primary: var(--text-black-primary);
+    --text-color-secondary: var(--text-black-secondary);
+
+    background-color: var(--color-foreground);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
 }
 
 *[data-hue=primary] {
-    background-color: $color-blue;
-    color: $text-white-primary;
-    fill: $text-white-primary;
+    --text-color-primary: var(--text-white-primary);
+    --text-color-secondary: var(--text-white-secondary);
+
+    background-color: var(--color-primary);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
 }
 
-*[data-hue=accent] {
-    background-color: $color-orange;
-    color: $text-white-primary;
-    fill: $text-white-primary;
+*[data-hue=warning] {
+    --text-color-primary: var(--text-white-primary);
+    --text-color-secondary: var(--text-white-secondary);
+
+    background-color: var(--color-warning);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
 }
 
 *[data-hue=positive] {
-    background-color: $color-green;
-    color: $text-white-primary;
-    fill: $text-white-primary;
+    --text-color-primary: var(--text-white-primary);
+    --text-color-secondary: var(--text-white-secondary);
+
+    background-color: var(--color-positive);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
 }
 
 *[data-hue=negative] {
-    background-color: $color-red;
-    color: $text-white-primary;
-    fill: $text-white-primary;
+    --text-color-primary: var(--text-white-primary);
+    --text-color-secondary: var(--text-white-secondary);
+
+    background-color: var(--color-negative);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
 }
 
 @import "./mixins/transitions";
 
-@import "./ddlscript/components/inputs"
-        , "./ddlscript/components/button";
+@import "./ddlscript/elements/inputs"
+        , "./ddlscript/elements/button";
 
 .ddlscript {
-    @import "./ddlscript/component";
+    @import "./ddlscript/layouts"
+            , "./ddlscript/elements";
 }

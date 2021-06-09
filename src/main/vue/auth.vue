@@ -4,7 +4,7 @@
 
 	<!-- Sign In Form -->
 	<div class='auth'>
-		<ddlscript-component-panel hue="foreground" title="Sign in to your account.">
+		<ddlscript-element-panel hue="foreground" elevation="raised" title="Sign in to your account.">
 
 			<div v-if="messages.error" data-hue="negative" style="text-align:center; padding: 1rem;">
 				{{ messages.error }}
@@ -12,21 +12,21 @@
 
 			<div style="padding:0 1rem">
 				<!-- field: username -->
-				<ddlscript-component-formfield title="Username" for="username" >
-					<ddlscript-component-input-textfield type='text' id='username' :value="credentials.username" placeholder="(eg your.name)" @updatevalue="credentials.username = $event" />
-				</ddlscript-component-formfield>
+				<ddlscript-element-formfield title="Username" for="username" >
+					<ddlscript-element-input-textfield type='text' id='username' :value="credentials.username" placeholder="(eg your.name)" @updatevalue="credentials.username = $event" />
+				</ddlscript-element-formfield>
 
 				<!-- field: password -->
-				<ddlscript-component-formfield title="Password" for="password" >
-					<ddlscript-component-input-textfield type='password' id='password' :value="credentials.password" placeholder="(at least 8 characters)" @updatevalue="credentials.password = $event" />
-				</ddlscript-component-formfield>
+				<ddlscript-element-formfield title="Password" for="password" >
+					<ddlscript-element-input-textfield type='password' id='password' :value="credentials.password" placeholder="(at least 8 characters)" @updatevalue="credentials.password = $event" />
+				</ddlscript-element-formfield>
 
 				<!-- button: submit -->
-				<div style="display:flex; justify-content:flex-end;margin-bottom:1rem;">
-					<ddlscript-component-button hue="positive" label="Sign In" :disabled="!canSubmit" :busy="is.submitting" @click="onSubmitClick" />
+				<div style="display:flex; justify-content:flex-end;padding-bottom:1rem;">
+					<ddlscript-element-button hue="positive" label="Sign In" :disabled="!canSubmit" :busy="is.submitting" @click="onSubmitClick" />
 				</div>
 			</div>
-		</ddlscript-component-panel>
+		</ddlscript-element-panel>
 	</div>
 
 	<!-- Copyright -->
@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import PanelComponent from "./components/panel.vue";
-import FormFieldComponent from "./components/formfield.vue";
-import TextFieldInputComponent from "./components/inputs/textfield.vue";
-import ButtonComponent from "./components/button.vue";
+import PanelElement from "./elements/panel.vue";
+import FormFieldElement from "./elements/formfield.vue";
+import TextFieldInputElement from "./elements/inputs/textfield.vue";
+import ButtonElement from "./elements/button.vue";
 import LogoSvg from "./svgs/logo.vue";
 
 import DDLScript from "./api";
@@ -48,10 +48,10 @@ export default {
 	name: 'auth',
 
 	components: {
-		'ddlscript-component-panel': PanelComponent,
-		'ddlscript-component-formfield': FormFieldComponent,
-		'ddlscript-component-input-textfield': TextFieldInputComponent,
-		'ddlscript-component-button': ButtonComponent,
+		'ddlscript-element-panel': PanelElement,
+		'ddlscript-element-formfield': FormFieldElement,
+		'ddlscript-element-input-textfield': TextFieldInputElement,
+		'ddlscript-element-button': ButtonElement,
 		'svg-logo': LogoSvg,
 	},
 
@@ -106,7 +106,7 @@ export default {
 
 <style lang="scss" scoped>
 	.auth {
-		max-width: 32rem;
+		max-width: 36rem;
 		margin: 0 auto;
 		padding: 2rem;
 	}

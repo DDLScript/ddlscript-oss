@@ -33,26 +33,19 @@ time, mark, audio, video {
 }
 
 html, body {
-
 	font-family:  "Helvetica Neue", "Calibri Light", "Roboto", sans-serif;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: greyscale;
 	letter-spacing: 0.02rem;
 
-    font-size: 11pt; /* 1 */
-    -webkit-text-size-adjust: 11pt; /* 2 */
-    -ms-text-size-adjust: 11pt; /* 2 */
+    font-size: var(--font-size-baseline);
+    -webkit-text-size-adjust: var(--font-size-baseline);
+    -ms-text-size-adjust: var(--font-size-baseline);
+
+    font-weight: var(--font-weight-normal);
 
 	-webkit-appearance:none;
-}
-
-@media (pointer: fine) {
-	html,body {
-		font-size: 10pt; /* 1 */
-		-webkit-text-size-adjust: 10pt; /* 2 */
-		-ms-text-size-adjust: 10pt; /* 2 */
-	}
 }
 
 textarea {

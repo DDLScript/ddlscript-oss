@@ -1,9 +1,9 @@
 <template>
 	<div
-		class="ddlscript-component-panel"
+		class="ddlscript-element-panel"
 		:data-hue="hue"
 		>
-		<div v-if="isTitleVisible" class='ddlscript-component-panel-title'>
+		<div v-if="isTitleVisible" class='ddlscript-element-panel-title'>
 			<span>{{ title }}</span>
 		</div>
 		<slot name="default"></slot>
@@ -12,11 +12,11 @@
 
 <script>
 export default {
-	name: 'ddlscript-component-panel',
+	name: 'ddlscript-element-panel',
 
 	props: {
 		hue: { type:String, default:null },
-		title: { type:String, default:null }
+		title: { type:String, default:null },
 	},
 
 	computed: {

@@ -10,8 +10,8 @@
 
 	opacity: 0.85;
 
-	border-left-color: $text-white-primary;
-	border-right-color: $text-white-primary;
+	border-left-color: var(--text-color-primary);
+	border-right-color: var(--text-color-primary);
 
     -webkit-animation-name: keyframes_busySpinner;
     -webkit-animation-duration: 1000ms;

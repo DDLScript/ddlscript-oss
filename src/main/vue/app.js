@@ -5,10 +5,13 @@ import App from './app.vue';
 import Auth from './auth.vue';
 import DDLScript from './api';
 
-DDLScript.get("/session")
-    .then(() => {
+DDLScript.api.session.get()
+    .then(json => {
         // create app
         const app = createApp(App);
+
+        // store session data
+        app.config.globalProperties.$session = json;
 
         // vue-router
         app.use(router);
@@ -16,7 +19,8 @@ DDLScript.get("/session")
         // mount the application
         app.mount("#app");
     })
-    .catch(() => {
+    .catch(err => {
+        console.log(err);
         // not signed in
         // create app
         const app = createApp(Auth);
