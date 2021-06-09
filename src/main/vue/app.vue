@@ -2,11 +2,7 @@
 	<ddlscript-element-globalheader />
 	<ddlscript-layout-threecolumn>
 		<template v-slot:nav>
-			<ddlscript-element-panel hue="foreground" title="Projects">
-				<div style='padding:4rem 0;text-align:center;'>
-					<ddlscript-element-busyspinner />
-				</div>
-			</ddlscript-element-panel>
+			<ddlscript-component-panel-projectlist />
 		</template>
 
 		<template v-slot:aside>
@@ -32,7 +28,10 @@
 import GlobalHeaderElement from "./elements/globalheader.vue";
 import PanelElement from "./elements/panel.vue";
 import BusySpinnerElement from "./elements/busyspinner.vue";
+
 import ThreeColumnLayout from "./layouts/threecolumn.vue";
+
+import ProjectListPanelComponent from "./components/panels/projectlist.vue";
 
 export default {
 	name: 'app',
@@ -41,7 +40,10 @@ export default {
 		'ddlscript-element-globalheader': GlobalHeaderElement,
 		'ddlscript-element-panel': PanelElement,
 		'ddlscript-element-busyspinner': BusySpinnerElement,
+
 		'ddlscript-layout-threecolumn': ThreeColumnLayout,
+
+		'ddlscript-component-panel-projectlist': ProjectListPanelComponent,
 	},
 
 	mounted() {
