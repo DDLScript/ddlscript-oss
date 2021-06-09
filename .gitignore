@@ -14,5 +14,5 @@ build/
 jar/
 data/
 
-src/main/resources/webroot/static/script/
-src/main/resources/webroot/static/style/
+src/main/resources/webroot/css/
+src/main/resources/webroot/js/
