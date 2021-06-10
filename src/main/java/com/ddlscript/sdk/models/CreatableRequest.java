@@ -1,4 +1,4 @@
-package com.ddlscript.def.models;
+package com.ddlscript.sdk.models;
 
 import com.ddlscript.sdk.Model;
 import com.ddlscript.sdk.SdkBuilder;

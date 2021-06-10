@@ -1,6 +1,6 @@
 package com.ddlscript.def.models.authentication;
 
-import com.ddlscript.def.models.DescribableRequest;
+import com.ddlscript.sdk.models.DescribableRequest;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;

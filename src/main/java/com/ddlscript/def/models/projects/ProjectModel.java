@@ -1,6 +1,6 @@
 package com.ddlscript.def.models.projects;
 
-import com.ddlscript.def.models.IdentifiableModel;
+import com.ddlscript.sdk.models.IdentifiableModel;
 import com.ddlscript.def.models.users.UserIdentifier;
 
 import java.time.Instant;

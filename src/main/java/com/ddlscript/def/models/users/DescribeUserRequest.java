@@ -1,6 +1,6 @@
 package com.ddlscript.def.models.users;
 
-import com.ddlscript.def.models.DescribableRequest;
+import com.ddlscript.sdk.models.DescribableRequest;
 import com.ddlscript.utils.StringParser;
 import lombok.Getter;
 import lombok.NonNull;

@@ -1,6 +1,6 @@
 package com.ddlscript.sdk.controllers;
 
-import com.ddlscript.def.models.DescribableRequest;
+import com.ddlscript.sdk.models.DescribableRequest;
 import com.ddlscript.sdk.Model;
 
 import java.util.Optional;

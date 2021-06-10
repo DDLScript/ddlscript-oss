@@ -1,6 +1,6 @@
 package com.ddlscript.def.models.users;
 
-import com.ddlscript.def.models.CreatableRequest;
+import com.ddlscript.sdk.models.CreatableRequest;
 import com.ddlscript.utils.StringParser;
 import lombok.AccessLevel;
 import lombok.Getter;
