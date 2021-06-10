@@ -3,6 +3,7 @@ package com.ddlscript;
 import com.ddlscript.factories.DataSourceFactory;
 import com.ddlscript.repository.embedded.EmbeddedDatabaseMutator;
 import com.ddlscript.routes.ApplicationRoute;
+import com.ddlscript.routes.api.projects.ListProjectRoute;
 import com.ddlscript.routes.api.sessions.DeleteSessionRoute;
 import com.ddlscript.routes.api.sessions.GetSessionRoute;
 import com.ddlscript.routes.api.sessions.PostSessionRoute;
@@ -65,6 +66,10 @@ public class Application {
 				Spark.get("", new GetSessionRoute());
 				Spark.post("", new PostSessionRoute());
 				Spark.delete("", new DeleteSessionRoute());
+			});
+
+			Spark.path("/projects", () -> {
+				Spark.get("", new ListProjectRoute());
 			});
 
 
