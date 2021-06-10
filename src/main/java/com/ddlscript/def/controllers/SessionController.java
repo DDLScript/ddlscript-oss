@@ -3,6 +3,7 @@ package com.ddlscript.def.controllers;
 import com.ddlscript.def.models.sessions.CreateSessionRequest;
 import com.ddlscript.def.models.sessions.DescribeSessionRequest;
 import com.ddlscript.def.models.sessions.SessionModel;
+import com.ddlscript.sdk.controllers.DeletableController;
 import lombok.NonNull;
 
 import java.util.Optional;
