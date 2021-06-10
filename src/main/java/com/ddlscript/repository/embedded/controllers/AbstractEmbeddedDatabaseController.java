@@ -7,9 +7,11 @@ import org.apache.commons.dbutils.GenerousBeanProcessor;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.RowProcessor;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;
+import java.util.Collection;
 
 /**
  * Database controller.
@@ -53,6 +55,36 @@ public abstract class AbstractEmbeddedDatabaseController {
 	) {
 		try {
 			return this.queryRunner.query(sqlQuery, new BeanHandler<>(modelClass, ROW_PROCESSOR), parameters);
+		} catch (SQLException sqlException) {
+			throw new EmbeddedDatabaseException(
+					sqlException
+					, sqlQuery
+					, modelClass
+					, parameters
+			);
+		}
+	}
+
+	/**
+	 * Returns a collection of instances instance.
+	 *
+	 * @param modelClass
+	 * 		DTO Class being returned.
+	 * @param sqlQuery
+	 * 		SQL Query being executed.
+	 * @param parameters
+	 * 		Parameters being passed into the query.
+	 * @param <T>
+	 * 		Type of DTO class being returned.
+	 * @return Collection of DTOs.
+	 */
+	protected <T> Collection<T> filter(
+			final Class<T> modelClass
+			, final String sqlQuery
+			, final Object... parameters
+	) {
+		try {
+			return this.queryRunner.query(sqlQuery, new BeanListHandler<>(modelClass, ROW_PROCESSOR), parameters);
 		} catch (SQLException sqlException) {
 			throw new EmbeddedDatabaseException(
 					sqlException

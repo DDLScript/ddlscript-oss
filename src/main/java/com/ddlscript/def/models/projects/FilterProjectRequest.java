@@ -1,7 +1,7 @@
 package com.ddlscript.def.models.projects;
 
-import com.ddlscript.def.models.CreatableRequest;
 import com.ddlscript.def.models.users.UserModel;
+import com.ddlscript.sdk.models.FilterableRequest;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 /**
  * A request to retrieve a list of rojects.
  */
-public class FilterProjectRequest implements CreatableRequest<ProjectModel> {
+public class FilterProjectRequest implements FilterableRequest<ProjectModel> {
 
 	/**
 	 * Returns a new builder capable of producing a new creation request.
@@ -45,7 +45,7 @@ public class FilterProjectRequest implements CreatableRequest<ProjectModel> {
 
 	public static class CreateProjectRequestBuilder
 			implements
-			CreatableRequestBuilder<ProjectModel, FilterProjectRequest, CreateProjectRequestBuilder> {
+			FilterableRequestBuilder<ProjectModel, FilterProjectRequest, CreateProjectRequestBuilder> {
 
 		private final FilterProjectRequest request = new FilterProjectRequest();
 
