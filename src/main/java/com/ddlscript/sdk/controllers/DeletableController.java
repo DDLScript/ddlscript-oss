@@ -1,4 +1,4 @@
-package com.ddlscript.def.controllers;
+package com.ddlscript.sdk.controllers;
 
 /**
  * Represents a controller that is capable of deleting a model based upon it's identifier value.

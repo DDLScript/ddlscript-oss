@@ -1,4 +1,4 @@
-package com.ddlscript.def.controllers;
+package com.ddlscript.sdk.controllers;
 
 import com.ddlscript.def.models.IdentifiableModel;
 import com.ddlscript.sdk.Identifier;

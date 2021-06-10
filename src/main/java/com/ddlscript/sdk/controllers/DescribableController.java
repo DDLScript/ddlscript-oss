@@ -1,4 +1,4 @@
-package com.ddlscript.def.controllers;
+package com.ddlscript.sdk.controllers;
 
 import com.ddlscript.def.models.DescribableRequest;
 import com.ddlscript.sdk.Model;
