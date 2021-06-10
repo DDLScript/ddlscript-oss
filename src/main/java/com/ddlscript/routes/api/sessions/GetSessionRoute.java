@@ -1,25 +1,20 @@
 package com.ddlscript.routes.api.sessions;
 
-import com.ddlscript.factories.ControllerFactory;
+import com.ddlscript.def.models.sessions.SessionModel;
+import com.ddlscript.routes.AbstractAuthenticatedRoute;
 import com.ddlscript.schema.sessions.SessionSchema;
-import com.ddlscript.sdk.AbstractRoute;
 import spark.Request;
 import spark.Response;
 
-public class GetSessionRoute extends AbstractRoute<Void, SessionSchema> {
+public class GetSessionRoute extends AbstractAuthenticatedRoute<Void, SessionSchema> {
 
 	@Override
-	public SessionSchema handle(final Void withBody, final Request request, final Response response) throws Exception {
-
-		final var sessionId = request.cookie("sesid");
-		if (sessionId == null || sessionId.isBlank()) {
-			return null;
-		}
-
-		var sessionModel = ControllerFactory.INSTANCE.getSessionController()
-				.describe(builder -> builder.setToken(sessionId))
-				.orElseThrow();
-
-		return new SessionSchema(sessionModel);
+	public SessionSchema handle(
+			final SessionModel withSession
+			, final Void withBody
+			, final Request request
+			, final Response response
+	) throws Exception {
+		return new SessionSchema(withSession);
 	}
 }

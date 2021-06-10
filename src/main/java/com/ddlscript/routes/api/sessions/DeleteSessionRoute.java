@@ -1,28 +1,24 @@
 package com.ddlscript.routes.api.sessions;
 
+import com.ddlscript.def.models.sessions.SessionModel;
 import com.ddlscript.factories.ControllerFactory;
-import com.ddlscript.sdk.AbstractRoute;
+import com.ddlscript.routes.AbstractAuthenticatedRoute;
 import spark.Request;
 import spark.Response;
 
-public class DeleteSessionRoute extends AbstractRoute<Void, String> {
+public class DeleteSessionRoute extends AbstractAuthenticatedRoute<Void, String> {
 
 	@Override
-	public String handle(final Void withBody, final Request request, final Response response) throws Exception {
-
-		final var sessionId = request.cookie("sesid");
-		if (sessionId == null || sessionId.isBlank()) {
-			return null;
-		}
-
-		var sessionModel = ControllerFactory.INSTANCE
-				.getSessionController()
-				.describe(builder -> builder.setToken(sessionId))
-				.orElseThrow();
+	public String handle(
+			final SessionModel withSession
+			, final Void withBody
+			, final Request request
+			, final Response response
+	) throws Exception {
 
 		ControllerFactory.INSTANCE
 				.getSessionController()
-				.delete(sessionModel);
+				.delete(withSession);
 
 		// clear the cookie
 		response.cookie("sesid", "", 0, false, true);
