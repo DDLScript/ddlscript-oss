@@ -6,7 +6,7 @@
 
 		<ul>
 			<li v-for="item in projects" v-bind:key="item.timestamp_created">
-				<span>{{ item.name }}</span>
+				<a :href="'/projects/' + item.id">{{ item.name }}</a>
 			</li>
 		</ul>
 	</ddlscript-element-panel>
