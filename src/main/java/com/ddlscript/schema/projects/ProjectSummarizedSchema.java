@@ -14,6 +14,11 @@ public class ProjectSummarizedSchema {
 		this.model = withModel;
 	}
 
+	@JsonProperty("id")
+	public int getId() {
+		return this.model.getIdentifier().getRawValue();
+	}
+
 	@JsonProperty("name")
 	public String getName() {
 		return this.model.getName();

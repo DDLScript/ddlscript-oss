@@ -59,7 +59,7 @@ public class ListProjectRoute extends AbstractAuthenticatedRoute<Void, Collectio
 
 					@Override
 					public UserIdentifier getIdentifier() {
-						return null;
+						return new UserIdentifier(1);
 					}
 				})
 				.build();
