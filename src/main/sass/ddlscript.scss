@@ -1,11 +1,11 @@
 :root {
-    --color-primary: #244c88;
-    --color-background: #f3f2ef;
-    --color-foreground: #fff;
-    --color-positive: #2dbc4e;
-    --color-warning: #F05E23;
-    --color-negative: #af1629;
-    --color-accessibility: red;
+    --palette-primary: #244c88;
+    --palette-background: #f3f2ef;
+    --palette-foreground: #fff;
+    --palette-positive: #2dbc4e;
+    --palette-warning: #F05E23;
+    --palette-negative: #af1629;
+    --palette-accessibility: red;
 
     --text-white-primary: #fff;
     --text-white-secondary: #fbfbfc;
@@ -21,6 +21,8 @@
 
     --font-size-baseline: 12px;
     --font-size-normal: 1.6rem;
+
+    --color-background: var(--palette-background);
 }
 
 
@@ -44,6 +46,7 @@ $accessibility-indicator: red;
 @import "./reset.scss";
 
 html {
+    --color-background: var(--palette-background);
     --text-color-primary: var(--text-black-primary);
     --text-color-secondary: var(--text-black-secondary);
 
@@ -58,6 +61,7 @@ body {
 }
 
 *[data-hue=background] {
+    --color-background: var(--palette-background);
     --text-color-primary: var(--text-black-primary);
     --text-color-secondary: var(--text-black-secondary);
 
@@ -67,46 +71,51 @@ body {
 }
 
 *[data-hue=foreground] {
+    --color-background: var(--palette-foreground);
     --text-color-primary: var(--text-black-primary);
     --text-color-secondary: var(--text-black-secondary);
 
-    background-color: var(--color-foreground);
+    background-color: var(--color-background);
     color: var(--text-color-primary);
     fill: var(--text-color-primary);
 }
 
 *[data-hue=primary] {
+    --color-background: var(--palette-primary);
     --text-color-primary: var(--text-white-primary);
     --text-color-secondary: var(--text-white-secondary);
 
-    background-color: var(--color-primary);
+    background-color: var(--color-background);
     color: var(--text-color-primary);
     fill: var(--text-color-primary);
 }
 
 *[data-hue=warning] {
+    --color-background: var(--palette-warning);
     --text-color-primary: var(--text-white-primary);
     --text-color-secondary: var(--text-white-secondary);
 
-    background-color: var(--color-warning);
+    background-color: var(--color-background);
     color: var(--text-color-primary);
     fill: var(--text-color-primary);
 }
 
 *[data-hue=positive] {
+    --color-background: var(--palette-positive);
     --text-color-primary: var(--text-white-primary);
     --text-color-secondary: var(--text-white-secondary);
 
-    background-color: var(--color-positive);
+    background-color: var(--color-background);
     color: var(--text-color-primary);
     fill: var(--text-color-primary);
 }
 
 *[data-hue=negative] {
+    --color-background: var(--palette-negative);
     --text-color-primary: var(--text-white-primary);
     --text-color-secondary: var(--text-white-secondary);
 
-    background-color: var(--color-negative);
+    background-color: var(--color-background);
     color: var(--text-color-primary);
     fill: var(--text-color-primary);
 }
