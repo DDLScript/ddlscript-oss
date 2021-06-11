@@ -67,10 +67,13 @@ public class EmbeddedDatabaseProjectController
 	 * {@inheritDoc}.
 	 */
 	@Override
-	public PaginatedCollection<ProjectModel> filter(final FilterProjectRequest withRequest) {
+	public PaginatedCollection<ProjectModel> filter(@NonNull final FilterProjectRequest withRequest) {
 		List<ProjectModel> rowData = super.filter(
 				ProjectRowData.class
 				, SQL_FILTER
+				, withRequest.getAccessibleToUser()
+						.getIdentifier()
+						.getRawValue()
 		)
 				.stream()
 				.map(EmbeddedDatabaseProjectModel::new)
