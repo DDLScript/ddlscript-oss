@@ -3,8 +3,9 @@
 		class="ddlscript-element-panel"
 		:data-hue="hue"
 		>
-		<div v-if="isTitleVisible" class='ddlscript-element-panel-title'>
-			<span>{{ title }}</span>
+		<div v-if="isTitleVisible" class='ddlscript-element-panel-header'>
+			<span class='ddlscript-element-panel-header-title'>{{ title }}</span>
+			<span class='ddlscript-element-panel-header-actions'><slot name="actions"></slot></span>
 		</div>
 		<slot name="default"></slot>
 	</div>

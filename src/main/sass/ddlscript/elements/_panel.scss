@@ -2,9 +2,26 @@
     border-radius: 0.8rem;
     box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
 
-    &-title {
-        font-weight: 700;
-        padding: 1rem;
+    &-header {
         border-bottom: 1px solid darken($color-light-gray, 0.2);
+        padding: 0 1rem;
+
+        display: flex;
+        justify-content: stretch;
+        align-items: center;
+
+        &-title {
+            flex: 1 100%;
+            font-weight: 700;
+            padding: 1rem 0;
+        }
+
+        &-actions {
+            flex: 0;
+
+            &:empty {
+                display: none;
+            }
+        }
     }
 }
