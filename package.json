@@ -13,9 +13,10 @@
     "build": "vue-cli-service build --mode development --no-clean --modern --inline-vue --target app --dest \"src/main/resources/webroot/\" \"src/main/vue/app.js\""
   },
   "dependencies": {
-    "@bugsnag/js": "^7.4.0",
     "@bugsnag/core": "^7.3.5",
+    "@bugsnag/js": "^7.4.0",
     "@bugsnag/plugin-vue": "^7.3.5",
+    "mount-vue-component": "^0.10.0",
     "vue": "^3.0.0",
     "vue-axios": "^3.0.1",
     "vue-router": "^4.0.0-beta.13",

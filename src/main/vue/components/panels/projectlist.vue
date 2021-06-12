@@ -1,5 +1,9 @@
 <template>
 	<ddlscript-element-panel class='ddlscript-component-panel-projectlist' hue="foreground" title="Projects">
+		<template v-slot:actions>
+			<ddlscript-element-button label="Create Project" hue="primary" @click="onCreateProjectClicked" />
+		</template>
+
 		<div v-if="is.loading" style='padding:4rem 0;text-align:center;'>
 			<ddlscript-element-busyspinner />
 		</div>
@@ -13,8 +17,14 @@
 </template>
 
 <script>
+import { mount } from 'mount-vue-component'
+// import { h } from 'vue'
+
 import PanelElement from "../../elements/panel.vue";
 import BusySpinnerElement from "../../elements/busyspinner.vue";
+import ButtonElement from "../../elements/button.vue";
+
+import CreateProjectModal from "../../components/modals/createproject.vue";
 
 import DDLScript from "../../api";
 
@@ -24,6 +34,7 @@ export default {
 	components: {
 		'ddlscript-element-panel': PanelElement,
 		'ddlscript-element-busyspinner': BusySpinnerElement,
+		'ddlscript-element-button': ButtonElement,
 	},
 
 	data: () => ({
@@ -33,6 +44,14 @@ export default {
 		},
 		projects: []
 	}),
+
+	methods: {
+		onCreateProjectClicked() {
+			mount(Object.assign({}, CreateProjectModal), {
+				element: document.querySelector("body")
+			});
+		}
+	},
 
 	async mounted() {
 		try {
