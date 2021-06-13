@@ -26,6 +26,8 @@ public class EmbeddedDatabaseProjectController
 
 	private static final String SQL_CREATE = ResourceUtils.getResourceAsString("/database/dml/projects/create.sql");
 
+	private static final String SQL_ADD_USER = ResourceUtils.getResourceAsString("/database/dml/projects/users/create.sql");
+
 	public EmbeddedDatabaseProjectController(@NonNull final DataSource withDataSource) {
 		super(withDataSource);
 	}
@@ -60,7 +62,20 @@ public class EmbeddedDatabaseProjectController
 						.getIdentifier()
 						.getRawValue()
 		);
-		return this.find(new ProjectIdentifier(rowData.getId()));
+		var projectIdentifier = new ProjectIdentifier(rowData.getId());
+
+		super.update(
+				SQL_ADD_USER
+				, projectIdentifier.getRawValue()
+				, withRequest.getUserCreated()
+						.getIdentifier()
+						.getRawValue()
+				, withRequest.getUserCreated()
+						.getIdentifier()
+						.getRawValue()
+		);
+
+		return this.find(projectIdentifier);
 	}
 
 	/**

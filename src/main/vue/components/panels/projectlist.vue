@@ -57,6 +57,7 @@ export default {
 		try {
 			var response = await DDLScript.api.projects.list();
 			this.projects = response.items;
+			this.projects.sort((a, b) => ('' + a.name.toLowerCase()).localeCompare('' + b.name.toLowerCase()));
 		} catch (err) {
 			this.is.error = true;
 		} finally {

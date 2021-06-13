@@ -7,4 +7,12 @@ export default (DDLScript) => ({
 		"/projects"
 	),
 
+	create: async (payload) => await DDLScript.post(
+		"/projects"
+		, {}
+		, {
+			name: payload.name
+		}
+	),
+
 });

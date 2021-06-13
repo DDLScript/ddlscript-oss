@@ -1,0 +1,2 @@
+INSERT INTO `ProjectUser` (PROJECT_ID, USER_ID, USER_ID_CREATED)
+VALUES (?, ?, ?);

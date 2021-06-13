@@ -3,12 +3,23 @@ package com.ddlscript.routes;
 import com.ddlscript.def.models.sessions.SessionModel;
 import com.ddlscript.factories.ControllerFactory;
 import com.ddlscript.sdk.AbstractRoute;
+import lombok.NonNull;
 import spark.Request;
 import spark.Response;
 
 public abstract class AbstractAuthenticatedRoute<INPUT, OUTPUT> extends AbstractRoute<INPUT, OUTPUT> {
 
-	public abstract OUTPUT handle(final SessionModel withSession, final INPUT withBody, final Request request, final Response response) throws Exception;
+	public abstract OUTPUT handle(
+			final SessionModel withSession, final INPUT withBody, final Request request, final Response response
+	) throws Exception;
+
+	public AbstractAuthenticatedRoute() {
+		super();
+	}
+
+	public AbstractAuthenticatedRoute(@NonNull Class<INPUT> withInputClass) {
+		super(withInputClass);
+	}
 
 	@Override
 	public OUTPUT handle(final INPUT withBody, final Request request, final Response response) throws Exception {
