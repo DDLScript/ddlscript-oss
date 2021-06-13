@@ -1,22 +1,4 @@
-/* Button Mixins */
-@mixin btn-theme($btn-color) {
-    // @include hue($btn-color);
-	border-color: darken($btn-color, 80%);
-
-	&:hover:not(:disabled) {
-	    -webkit-filter: brightness(115%); /* Safari 6.0 - 9.0 */
-	    filter: brightness(115%);
-		/*background-color: darken($btn-color, 6%);
-		box-shadow: 0 .125rem $off-wht, inset 0 .063rem $off-wht, inset 0 -.188rem lighten($btn-color, 2%);*/
-	}
-
-	&:active:not(:disabled) {
-		/*box-shadow: 0 .063rem $off-wht, inset 0 0 1.094rem darken($btn-color, 40%), inset 0 .063rem darken($btn-color, 20%),inset 0 -0.188rem darken($btn-color, 20%);*/
-	}
-}
-
-/* Button Global */
-button {
+&-button {
 	display: inline-flex;
 	align-items: center;
 	align-content: center;
@@ -25,9 +7,10 @@ button {
 	margin: 0.1rem;
 	padding: 0 0.75rem;
 	height:2.25rem;
-	border: .047rem solid;
-	border-radius: .125rem;
-	box-shadow: 0 0.15rem 0.5rem -0.25rem rgba(black,.8), inset 0 .063rem $color-light-gray, inset 0 -.188rem rgba(black,.15);
+	border: .047rem solid var(--color-background);
+	border-radius: .25rem;
+	box-shadow: 0 1px 0 0 rgba(black, 0.15);
+
 	font: bold 1rem;
 	@include transitions(0.2s ease-in-out);
 	text: {
@@ -48,26 +31,9 @@ button {
 		height: 1.25rem;
 	}
 
-	@include btn-theme($color-lighter-gray);
-
-	/* Themes */
-	&[data-hue=primary] {
-		@include btn-theme($color-blue);
-	}
-	&[data-hue=accent] {
-		@include btn-theme($color-orange);
-	}
-	&[data-hue=positive] {
-		@include btn-theme($color-green);
-	}
-	&[data-hue=negative] {
-		@include btn-theme($color-red);
-	}
-	&[data-hue=foreground] {
-		@include btn-theme($color-white);
-	}
-	&[data-hue=background] {
-		@include btn-theme($color-light-gray);
+	&:hover:not(:disabled) {
+	    -webkit-filter: brightness(115%); /* Safari 6.0 - 9.0 */
+	    filter: brightness(115%);
 	}
 
 	&:focus { // #todo update to be :focus-visible

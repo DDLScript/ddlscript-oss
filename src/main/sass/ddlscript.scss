@@ -122,8 +122,7 @@ body {
 
 @import "./mixins/transitions";
 
-@import "./ddlscript/elements/inputs"
-        , "./ddlscript/elements/button";
+@import "./ddlscript/elements/inputs";
 
 .ddlscript {
     @import "./ddlscript/layouts"
