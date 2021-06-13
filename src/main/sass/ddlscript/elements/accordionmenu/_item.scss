@@ -1,0 +1,10 @@
+&-item {
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+	display: block;
+
+	&:hover {
+		background-color: var(--color-background);
+		filter:brightness(95%);
+	}
+}

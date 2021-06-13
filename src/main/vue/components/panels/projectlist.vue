@@ -8,11 +8,8 @@
 			<ddlscript-element-busyspinner />
 		</div>
 
-		<ul>
-			<li v-for="item in projects" v-bind:key="item.timestamp_created">
-				<a :href="'/projects/' + item.id">{{ item.name }}</a>
-			</li>
-		</ul>
+		<ddlscript-element-accordionmenu-item v-for="item in projects" v-bind:key="item.timestamp_created" :label="item.name" :href="'/projects/' + item.id" />
+
 	</ddlscript-element-panel>
 </template>
 
@@ -22,6 +19,7 @@ import { mount } from 'mount-vue-component'
 import PanelElement from "../../elements/panel.vue";
 import BusySpinnerElement from "../../elements/busyspinner.vue";
 import ButtonElement from "../../elements/button.vue";
+import AccordionMenuItem from "../../elements/accordionmenu/item.vue";
 
 import CreateProjectModal from "../../components/modals/createproject.vue";
 
@@ -34,6 +32,7 @@ export default {
 		'ddlscript-element-panel': PanelElement,
 		'ddlscript-element-busyspinner': BusySpinnerElement,
 		'ddlscript-element-button': ButtonElement,
+		'ddlscript-element-accordionmenu-item': AccordionMenuItem,
 	},
 
 	data: () => ({
