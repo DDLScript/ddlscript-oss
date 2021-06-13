@@ -44,11 +44,6 @@ export default {
 		'ddlscript-layout-threecolumn': ThreeColumnLayout,
 
 		'ddlscript-component-panel-projectlist': ProjectListPanelComponent,
-	},
-
-	mounted() {
-		console.log("SESSION:", this.$session, this.$session.user);
-
-	},
+	}
 };
 </script>

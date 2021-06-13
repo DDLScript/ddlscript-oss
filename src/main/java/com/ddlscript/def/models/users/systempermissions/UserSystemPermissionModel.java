@@ -1,6 +1,6 @@
 package com.ddlscript.def.models.users.systempermissions;
 
-import com.ddlscript.def.models.permissions.SystemPermission;
+import com.ddlscript.def.models.permissions.system.SystemPermission;
 import com.ddlscript.def.models.users.UserIdentifier;
 
 import java.time.Instant;

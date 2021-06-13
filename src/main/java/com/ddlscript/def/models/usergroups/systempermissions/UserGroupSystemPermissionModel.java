@@ -1,6 +1,6 @@
 package com.ddlscript.def.models.usergroups.systempermissions;
 
-import com.ddlscript.def.models.permissions.SystemPermission;
+import com.ddlscript.def.models.permissions.system.SystemPermission;
 import com.ddlscript.def.models.usergroups.UserGroupIdentifier;
 import com.ddlscript.def.models.users.UserIdentifier;
 

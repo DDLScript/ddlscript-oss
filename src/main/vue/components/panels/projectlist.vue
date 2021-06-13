@@ -1,7 +1,7 @@
 <template>
 	<ddlscript-element-panel class='ddlscript-component-panel-projectlist' hue="foreground" title="Projects">
 		<template v-slot:actions>
-			<ddlscript-element-button label="Create Project" hue="primary" @click="onCreateProjectClicked" />
+			<ddlscript-element-button v-if="canCreateProjects" label="Create Project" hue="primary" @click="onCreateProjectClicked" />
 		</template>
 
 		<div v-if="is.loading" style='padding:4rem 0;text-align:center;'>
@@ -18,7 +18,6 @@
 
 <script>
 import { mount } from 'mount-vue-component'
-// import { h } from 'vue'
 
 import PanelElement from "../../elements/panel.vue";
 import BusySpinnerElement from "../../elements/busyspinner.vue";
@@ -44,6 +43,12 @@ export default {
 		},
 		projects: []
 	}),
+
+	computed: {
+		canCreateProjects() {
+			return this.$session.systemPermissions.includes("CREATE_PROJECTS");
+		}
+	},
 
 	methods: {
 		onCreateProjectClicked() {

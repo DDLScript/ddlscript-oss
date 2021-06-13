@@ -1,11 +1,13 @@
 package com.ddlscript.schema.sessions;
 
-import com.ddlscript.def.models.sessions.SessionModel;
-import com.ddlscript.factories.ControllerFactory;
+import com.ddlscript.def.models.permissions.system.SystemPermission;
+import com.ddlscript.routes.AuthenticationContext;
 import com.ddlscript.schema.users.UserSummarizedSchema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.NonNull;
+
+import java.util.Collection;
 
 /**
  * Full schema of a session.
@@ -13,23 +15,25 @@ import lombok.NonNull;
 public class SessionSchema {
 
 	@JsonIgnore
-	private final SessionModel model;
+	private final AuthenticationContext authenticationContext;
 
-	public SessionSchema(@NonNull final SessionModel withModel) {
-		this.model = withModel;
+	public SessionSchema(@NonNull final AuthenticationContext withAuthenticationContext) {
+		this.authenticationContext = withAuthenticationContext;
 	}
 
 	@JsonProperty("timestamp_created")
 	public String getTimestampCreated() {
-		return this.model.getTimestampCreated().toString();
+		return this.authenticationContext.getSessionModel()
+				.getTimestampCreated()
+				.toString();
 	}
 
 	@JsonProperty("user")
 	public UserSummarizedSchema getUser() {
-		return ControllerFactory.INSTANCE
-				.getUserController()
-				.find(this.model.getUserIdentifier())
-				.map(UserSummarizedSchema::new)
-				.orElse(null);
+		return new UserSummarizedSchema(this.authenticationContext.getUserModel());
+	}
+
+	public Collection<SystemPermission> getSystemPermissions() {
+		return this.authenticationContext.getSystemPermissions();
 	}
 }

@@ -1,11 +1,12 @@
-package com.ddlscript.def.models.permissions;
+package com.ddlscript.def.models.permissions.project;
 
+import com.ddlscript.sdk.Model;
 import lombok.Getter;
 
 /**
  * System based permissions.
  */
-public enum ProjectPermission {
+public enum ProjectPermission implements Model {
 
 	/**
 	 * Grants the user the ability to create and modify scripts within a project.

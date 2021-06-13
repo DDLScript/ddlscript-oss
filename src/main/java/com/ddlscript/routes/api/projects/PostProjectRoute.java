@@ -1,5 +1,6 @@
 package com.ddlscript.routes.api.projects;
 
+import com.ddlscript.def.models.permissions.system.SystemPermission;
 import com.ddlscript.def.models.projects.CreateProjectRequest;
 import com.ddlscript.factories.ControllerFactory;
 import com.ddlscript.inputs.projects.CreateProjectInput;
@@ -22,6 +23,10 @@ public class PostProjectRoute extends AbstractAuthenticatedRoute<CreateProjectIn
 			, final Request request
 			, final Response response
 	) throws Exception {
+		if (!withAuthenticationContext.getSystemPermissions()
+				.contains(SystemPermission.CREATE_PROJECTS)) {
+			throw new IllegalAccessException();
+		}
 
 		// create a new session instance
 		var createProjectRequest = CreateProjectRequest.builder()

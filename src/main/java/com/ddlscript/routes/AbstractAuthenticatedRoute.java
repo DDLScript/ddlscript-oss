@@ -1,5 +1,6 @@
 package com.ddlscript.routes;
 
+import com.ddlscript.def.models.permissions.system.FilterSystemPermissionRequest;
 import com.ddlscript.factories.ControllerFactory;
 import com.ddlscript.sdk.AbstractRoute;
 import lombok.NonNull;
@@ -35,13 +36,22 @@ public abstract class AbstractAuthenticatedRoute<INPUT, OUTPUT> extends Abstract
 		var userModel = ControllerFactory.INSTANCE
 				.getUserController()
 				.find(sessionModel.getUserIdentifier())
+				.filter(user -> !user.isArchived())
 				.orElseThrow();
+
+		// fetch the system permissions
+		var systemPermissionsFilter = FilterSystemPermissionRequest.builder()
+				.setAccessibleToUser(userModel)
+				.build();
+		var systemPermissions = ControllerFactory.INSTANCE
+				.getSystemPermissionController()
+				.filter(systemPermissionsFilter);
 
 		var authenticationContext = AuthenticationContext.builder()
 				.setSessionModel(sessionModel)
 				.setUserModel(userModel)
+				.setSystemPermissions(systemPermissions.getElements())
 				.build();
-
 
 		return this.handle(authenticationContext, withBody, request, response);
 	}

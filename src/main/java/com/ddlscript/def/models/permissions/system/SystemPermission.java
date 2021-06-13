@@ -1,11 +1,12 @@
-package com.ddlscript.def.models.permissions;
+package com.ddlscript.def.models.permissions.system;
 
+import com.ddlscript.sdk.Model;
 import lombok.Getter;
 
 /**
  * System based permissions.
  */
-public enum SystemPermission {
+public enum SystemPermission implements Model {
 
 	/**
 	 * Grants the user the ability to create new projects.
@@ -26,6 +27,16 @@ public enum SystemPermission {
 	 * Grants the user the ability to manage API keys.
 	 */
 	MANAGE_API_KEYS(4);
+
+	public static SystemPermission ofIdentifier(final int withValue) {
+		for (SystemPermission permission : SystemPermission.values()) {
+			if (permission.getDatabaseValue() == withValue) {
+				return permission;
+			}
+		}
+
+		throw new IllegalArgumentException("Value " + withValue + " is not valid.");
+	}
 
 	/**
 	 * Database value that represents this setting.

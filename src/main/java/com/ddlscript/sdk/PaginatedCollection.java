@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 
 /**
@@ -51,6 +52,10 @@ public class PaginatedCollection<E> implements Iterable<E> {
 		this.elements.addAll(other.elements);
 		this.setPageSize(other.getPageSize());
 		this.setPageCount(other.getPageCount());
+	}
+
+	public Collection<E> getElements() {
+		return Collections.unmodifiableCollection(this.elements);
 	}
 
 	/**

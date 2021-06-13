@@ -1,9 +1,11 @@
 package com.ddlscript.routes.api.sessions;
 
+import com.ddlscript.def.models.permissions.system.FilterSystemPermissionRequest;
 import com.ddlscript.def.models.sessions.CreateSessionRequest;
 import com.ddlscript.def.models.users.DescribeUserRequest;
 import com.ddlscript.factories.ControllerFactory;
 import com.ddlscript.inputs.sessions.CreateSessionInput;
+import com.ddlscript.routes.AuthenticationContext;
 import com.ddlscript.schema.sessions.SessionSchema;
 import com.ddlscript.sdk.AbstractRoute;
 import spark.Request;
@@ -48,10 +50,24 @@ public class PostSessionRoute extends AbstractRoute<CreateSessionInput, SessionS
 				.create(createSessionRequest)
 				.orElseThrow();
 
+		// fetch the system permissions
+		var systemPermissionsFilter = FilterSystemPermissionRequest.builder()
+				.setAccessibleToUser(userModel)
+				.build();
+		var systemPermissions = ControllerFactory.INSTANCE
+				.getSystemPermissionController()
+				.filter(systemPermissionsFilter);
+
+		var authenticationContext = AuthenticationContext.builder()
+				.setSessionModel(sessionModel)
+				.setUserModel(userModel)
+				.setSystemPermissions(systemPermissions.getElements())
+				.build();
+
 		// store the session cookie
 		response.cookie("sesid", sessionModel.getToken(), withInput.isRememberMe() ? Integer.MAX_VALUE : -1, false, true);
 
 		// return the new session schema
-		return new SessionSchema(sessionModel);
+		return new SessionSchema(authenticationContext);
 	}
 }

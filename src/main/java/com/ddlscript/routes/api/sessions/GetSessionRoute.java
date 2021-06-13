@@ -15,6 +15,6 @@ public class GetSessionRoute extends AbstractAuthenticatedRoute<Void, SessionSch
 			, final Request request
 			, final Response response
 	) throws Exception {
-		return new SessionSchema(withAuthenticationContext.getSessionModel());
+		return new SessionSchema(withAuthenticationContext);
 	}
 }

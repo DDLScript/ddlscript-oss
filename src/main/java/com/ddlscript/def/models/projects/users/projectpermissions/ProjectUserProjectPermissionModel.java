@@ -1,6 +1,6 @@
 package com.ddlscript.def.models.projects.users.projectpermissions;
 
-import com.ddlscript.def.models.permissions.ProjectPermission;
+import com.ddlscript.def.models.permissions.project.ProjectPermission;
 import com.ddlscript.def.models.projects.ProjectIdentifier;
 import com.ddlscript.def.models.users.UserIdentifier;
 

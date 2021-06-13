@@ -12,6 +12,7 @@ DDLScript.api.session.get()
 
         // store session data
         app.config.globalProperties.$session = json;
+        console.log("SESSION:", json);
 
         // vue-router
         app.use(router);
