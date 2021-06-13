@@ -1,6 +1,5 @@
 package com.ddlscript.routes;
 
-import com.ddlscript.def.models.sessions.SessionModel;
 import com.ddlscript.factories.ControllerFactory;
 import com.ddlscript.sdk.AbstractRoute;
 import lombok.NonNull;
@@ -10,7 +9,7 @@ import spark.Response;
 public abstract class AbstractAuthenticatedRoute<INPUT, OUTPUT> extends AbstractRoute<INPUT, OUTPUT> {
 
 	public abstract OUTPUT handle(
-			final SessionModel withSession, final INPUT withBody, final Request request, final Response response
+			final AuthenticationContext withAuthenticationContext, final INPUT withBody, final Request request, final Response response
 	) throws Exception;
 
 	public AbstractAuthenticatedRoute() {
@@ -32,6 +31,18 @@ public abstract class AbstractAuthenticatedRoute<INPUT, OUTPUT> extends Abstract
 				.describe(builder -> builder.setToken(sessionId))
 				.orElseThrow();
 
-		return this.handle(sessionModel, withBody, request, response);
+		// search for a user
+		var userModel = ControllerFactory.INSTANCE
+				.getUserController()
+				.find(sessionModel.getUserIdentifier())
+				.orElseThrow();
+
+		var authenticationContext = AuthenticationContext.builder()
+				.setSessionModel(sessionModel)
+				.setUserModel(userModel)
+				.build();
+
+
+		return this.handle(authenticationContext, withBody, request, response);
 	}
 }

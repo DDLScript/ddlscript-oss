@@ -1,7 +1,7 @@
 package com.ddlscript.routes.api.sessions;
 
-import com.ddlscript.def.models.sessions.SessionModel;
 import com.ddlscript.routes.AbstractAuthenticatedRoute;
+import com.ddlscript.routes.AuthenticationContext;
 import com.ddlscript.schema.sessions.SessionSchema;
 import spark.Request;
 import spark.Response;
@@ -10,11 +10,11 @@ public class GetSessionRoute extends AbstractAuthenticatedRoute<Void, SessionSch
 
 	@Override
 	public SessionSchema handle(
-			final SessionModel withSession
+			final AuthenticationContext withAuthenticationContext
 			, final Void withBody
 			, final Request request
 			, final Response response
 	) throws Exception {
-		return new SessionSchema(withSession);
+		return new SessionSchema(withAuthenticationContext.getSessionModel());
 	}
 }
