@@ -13,12 +13,12 @@
 			<div style="padding:0 1rem">
 				<!-- field: username -->
 				<ddlscript-element-formfield title="Username" for="username" >
-					<ddlscript-element-input-textfield type='text' id='username' :value="credentials.username" placeholder="(eg your.name)" @updatevalue="credentials.username = $event" />
+					<ddlscript-element-input-textfield type='text' id='username' :value="credentials.username" :disabled="is.submitting" placeholder="(eg your.name)" @updatevalue="credentials.username = $event" @onkeyup="onUsernameKeyUp" />
 				</ddlscript-element-formfield>
 
 				<!-- field: password -->
 				<ddlscript-element-formfield title="Password" for="password" >
-					<ddlscript-element-input-textfield type='password' id='password' :value="credentials.password" placeholder="(at least 8 characters)" @updatevalue="credentials.password = $event" />
+					<ddlscript-element-input-textfield type='password' id='password' :value="credentials.password" :disabled="is.submitting" placeholder="(at least 8 characters)" @updatevalue="credentials.password = $event" @onkeyup="onPasswordKeyUp" />
 				</ddlscript-element-formfield>
 
 				<!-- button: submit -->
@@ -99,6 +99,14 @@ export default {
 				this.is.submitting = false;
 				this.messages.error = "Failed To Sign In";
 			}
+		},
+
+		async onUsernameKeyUp(event) {
+			(13 == event.keyCode) && document.querySelector("#password").focus();
+		},
+
+		async onPasswordKeyUp(event) {
+			(13 == event.keyCode) && this.onSubmitClick();
 		}
 	}
 };
