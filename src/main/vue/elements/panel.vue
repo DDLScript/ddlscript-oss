@@ -2,6 +2,7 @@
 	<div
 		class="ddlscript-element-panel"
 		:data-hue="hue"
+		:data-elevation="elevation"
 		>
 		<div v-if="isTitleVisible" class='ddlscript-element-panel-header'>
 			<span class='ddlscript-element-panel-header-title'>{{ title }}</span>
@@ -18,6 +19,7 @@ export default {
 	props: {
 		hue: { type:String, default:null },
 		title: { type:String, default:null },
+		elevation: { type:String, default:null },
 	},
 
 	computed: {
