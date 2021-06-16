@@ -5,6 +5,8 @@ import App from './app.vue';
 import Auth from './auth.vue';
 import DDLScript from './api';
 
+import VueClickAway from "vue3-click-away";
+
 DDLScript.api.session.get()
     .then(json => {
         // create app
@@ -13,6 +15,9 @@ DDLScript.api.session.get()
         // store session data
         app.config.globalProperties.$session = json;
         console.log("SESSION:", json);
+
+        // vue click away
+        app.use(VueClickAway);
 
         // vue-router
         app.use(router);
