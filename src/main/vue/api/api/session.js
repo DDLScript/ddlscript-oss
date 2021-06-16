@@ -14,7 +14,11 @@ export default (DDLScript) => ({
 			username: payload.username,
 			password: payload.password
 		}
-	)
+	),
+
+	delete: async () => await DDLScript.delete(
+		"/session"
+	),
 
 
 });
