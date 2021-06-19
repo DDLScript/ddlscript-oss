@@ -11,7 +11,7 @@
 		</div>
 
 		<!-- User -->
-		<span class='account' style="display:block;padding:0.5rem 1rem;margin-right:1rem;">{{ $session.user.name }}</span>
+		<span class='account' style="display:block;padding:0.5rem 1rem;margin-right:1rem;cursor:pointer;">{{ $session.user.name }}</span>
 
 		<ddlscript-element-popover target=".ddlscript-element-globalheader > .account" trigger="click" position="bottom-end">
 			<ddlscript-element-panel :title="$session.user.username" hue="foreground" elevation="above" style="min-width:16rem;">
