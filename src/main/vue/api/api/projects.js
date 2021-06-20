@@ -1,7 +1,9 @@
 
-
+import _scripts from './projects/scripts';
 
 export default (DDLScript) => ({
+
+	scripts: _scripts(DDLScript),
 
 	list: async () => await DDLScript.get(
 		"/projects"

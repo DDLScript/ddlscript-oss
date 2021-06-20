@@ -60,6 +60,9 @@ export default {
 		console.log(this.$route.params);
 		try {
 			this.project = await DDLScript.api.projects.get(this.$route.params.id);
+
+			var _scripts = await DDLScript.api.projects.scripts.list(this.project.id);
+			console.log(_scripts);
 		} catch (err) {
 			console.log(err);
 			this.is.error = true;
