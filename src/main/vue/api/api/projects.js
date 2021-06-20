@@ -15,4 +15,8 @@ export default (DDLScript) => ({
 		}
 	),
 
+	get: async (id) => await DDLScript.get(
+		"/projects/" + id
+	),
+
 });

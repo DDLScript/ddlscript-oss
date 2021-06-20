@@ -2,6 +2,7 @@ package com.ddlscript.repository.embedded.controllers;
 
 import com.ddlscript.def.controllers.ProjectController;
 import com.ddlscript.def.models.projects.CreateProjectRequest;
+import com.ddlscript.def.models.projects.DescribeProjectRequest;
 import com.ddlscript.def.models.projects.FilterProjectRequest;
 import com.ddlscript.def.models.projects.ProjectIdentifier;
 import com.ddlscript.def.models.projects.ProjectModel;
@@ -25,6 +26,8 @@ public class EmbeddedDatabaseProjectController
 	private static final String SQL_FIND = ResourceUtils.getResourceAsString("/database/dml/projects/find.sql");
 
 	private static final String SQL_CREATE = ResourceUtils.getResourceAsString("/database/dml/projects/create.sql");
+
+	private static final String SQL_DESCRIBE = ResourceUtils.getResourceAsString("/database/dml/projects/describe.sql");
 
 	private static final String SQL_ADD_USER = ResourceUtils.getResourceAsString("/database/dml/projects/users/create.sql");
 
@@ -99,5 +102,22 @@ public class EmbeddedDatabaseProjectController
 				.setPageSize(Integer.MAX_VALUE)
 				.setPageCount(1)
 				.build();
+	}
+
+	/**
+	 * {@inheritDoc}.
+	 */
+	@Override
+	public Optional<ProjectModel> describe(@NonNull final DescribeProjectRequest withRequest) {
+		var instance = super.describe(
+				ProjectRowData.class
+				, SQL_DESCRIBE
+				, withRequest.getIdentifier().getRawValue()
+				, withRequest.getAccessibleToUser()
+						.getIdentifier()
+						.getRawValue()
+		);
+		return Optional.ofNullable(instance)
+				.map(EmbeddedDatabaseProjectModel::new);
 	}
 }
