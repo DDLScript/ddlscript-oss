@@ -43,6 +43,15 @@ public enum ProjectPermission implements Model {
 	 */
 	DIRECTLY_MERGE_SCRIPTS(7);
 
+	public static ProjectPermission ofIdentifier(final int withValue) {
+		for (ProjectPermission permission : ProjectPermission.values()) {
+			if (permission.getDatabaseValue() == withValue) {
+				return permission;
+			}
+		}
+
+		throw new IllegalArgumentException("Value " + withValue + " is not valid.");
+	}
 	/**
 	 * Database value that represents this setting.
 	 */

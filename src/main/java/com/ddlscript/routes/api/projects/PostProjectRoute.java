@@ -39,6 +39,6 @@ public class PostProjectRoute extends AbstractAuthenticatedRoute<CreateProjectIn
 				.orElseThrow();
 
 		// return the new session schema
-		return new ProjectSchema(projectModel);
+		return new ProjectSchema(withAuthenticationContext, projectModel);
 	}
 }

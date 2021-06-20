@@ -3,7 +3,7 @@ package com.ddlscript.repository.embedded.controllers;
 import com.ddlscript.def.controllers.SystemPermissionController;
 import com.ddlscript.def.models.permissions.system.FilterSystemPermissionRequest;
 import com.ddlscript.def.models.permissions.system.SystemPermission;
-import com.ddlscript.repository.embedded.rowdata.ProjectRowData;
+import com.ddlscript.repository.embedded.rowdata.SystemPermissionRowData;
 import com.ddlscript.sdk.PaginatedCollection;
 import com.ddlscript.utils.ResourceUtils;
 import lombok.NonNull;
@@ -27,14 +27,14 @@ public class EmbeddedDatabaseSystemPermissionController
 			final FilterSystemPermissionRequest withRequest
 	) {
 		var rowData = super.filter(
-				ProjectRowData.class
+				SystemPermissionRowData.class
 				, SQL_FILTER
 				, withRequest.getAccessibleToUser()
 						.getIdentifier()
 						.getRawValue()
 		)
 				.stream()
-				.map(ProjectRowData::getId)
+				.map(SystemPermissionRowData::getId)
 				.map(SystemPermission::ofIdentifier)
 				.collect(Collectors.toList());
 
