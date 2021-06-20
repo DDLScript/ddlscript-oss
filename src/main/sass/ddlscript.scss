@@ -7,6 +7,9 @@
     --palette-negative: #af1629;
     --palette-accessibility: red;
 
+    --palette-divider-light: rgba(255, 255, 255, 8%);
+    --palette-divider-dark: rgba(0, 0, 0, 8%);
+
     --text-white-primary: #fff;
     --text-white-secondary: #fbfbfc;
 
@@ -47,6 +50,7 @@ $accessibility-indicator: red;
 
 html {
     --color-background: var(--palette-background);
+    --color-divider: var(--palette-divider-dark);
     --text-color-primary: var(--text-black-primary);
     --text-color-secondary: var(--text-black-secondary);
 
@@ -62,6 +66,7 @@ body {
 
 *[data-hue=background] {
     --color-background: var(--palette-background);
+    --color-divider: var(--palette-divider-dark);
     --text-color-primary: var(--text-black-primary);
     --text-color-secondary: var(--text-black-secondary);
 
@@ -72,6 +77,7 @@ body {
 
 *[data-hue=foreground] {
     --color-background: var(--palette-foreground);
+    --color-divider: var(--palette-divider-dark);
     --text-color-primary: var(--text-black-primary);
     --text-color-secondary: var(--text-black-secondary);
 
@@ -82,6 +88,7 @@ body {
 
 *[data-hue=primary] {
     --color-background: var(--palette-primary);
+    --color-divider: var(--palette-divider-light);
     --text-color-primary: var(--text-white-primary);
     --text-color-secondary: var(--text-white-secondary);
 
@@ -92,6 +99,7 @@ body {
 
 *[data-hue=warning] {
     --color-background: var(--palette-warning);
+    --color-divider: var(--palette-divider-light);
     --text-color-primary: var(--text-white-primary);
     --text-color-secondary: var(--text-white-secondary);
 
@@ -102,6 +110,7 @@ body {
 
 *[data-hue=positive] {
     --color-background: var(--palette-positive);
+    --color-divider: var(--palette-divider-light);
     --text-color-primary: var(--text-white-primary);
     --text-color-secondary: var(--text-white-secondary);
 
@@ -112,6 +121,7 @@ body {
 
 *[data-hue=negative] {
     --color-background: var(--palette-negative);
+    --color-divider: var(--palette-divider-light);
     --text-color-primary: var(--text-white-primary);
     --text-color-secondary: var(--text-white-secondary);
 
