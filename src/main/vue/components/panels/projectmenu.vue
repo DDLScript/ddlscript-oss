@@ -5,9 +5,9 @@
 		<ddlscript-element-accordionmenu-item label="Merge Requests" :href="'/project/' + project.id + '/mergerequests'" />
 		<ddlscript-element-accordionmenu-item label="Mainline" :href="'/project/' + project.id + '/mainline'" />
 
-		<hr />
+		<hr v-if="showSettingsGroup" />
 
-		<ddlscript-element-accordionmenu-item label="Settings" :href="'/project/' + project.id + '/settings'" />
+		<ddlscript-element-accordionmenu-item v-if="showSettingsGroup" label="Settings" :href="'/project/' + project.id + '/settings'" />
 
 	</ddlscript-element-panel>
 </template>
@@ -32,6 +32,10 @@ export default {
 		hasProject() {
 			return this.project;
 		},
+
+		showSettingsGroup() {
+			return this.project && this.project.permissions && this.project.permissions.includes("MANAGE_PROJECT_SETTINGS");
+		}
 	},
 };
 </script>
