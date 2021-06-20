@@ -2,16 +2,9 @@ package com.ddlscript;
 
 import com.ddlscript.factories.DataSourceFactory;
 import com.ddlscript.repository.embedded.EmbeddedDatabaseMutator;
+import com.ddlscript.routegroups.ApiRouteGroup;
 import com.ddlscript.routes.ApplicationRoute;
-import com.ddlscript.routes.api.projects.GetProjectRoute;
-import com.ddlscript.routes.api.projects.ListProjectRoute;
-import com.ddlscript.routes.api.projects.PostProjectRoute;
-import com.ddlscript.routes.api.sessions.DeleteSessionRoute;
-import com.ddlscript.routes.api.sessions.GetSessionRoute;
-import com.ddlscript.routes.api.sessions.PostSessionRoute;
 import lombok.experimental.UtilityClass;
-import org.eclipse.jetty.http.HttpStatus;
-import spark.Route;
 import spark.Spark;
 
 import java.util.logging.Logger;
@@ -48,7 +41,7 @@ public class Application {
 			exception.printStackTrace();
 		});
 
-		initializeApiRoutes();
+		Spark.path("/api", new ApiRouteGroup());
 
 		// default application - routing is handled on the browser-side
 		// this MUST be the last route defined
@@ -60,39 +53,6 @@ public class Application {
 						, "Application is running on port: " + Spark.port()
 						, "\tRest API Documentation: http://localhost:" + Spark.port() + "/"
 				));
-	}
-
-	private void initializeApiRoutes() {
-		Spark.path("/api", () -> {
-			Spark.path("/session", () -> {
-				Spark.get("", new GetSessionRoute());
-				Spark.post("", new PostSessionRoute());
-				Spark.delete("", new DeleteSessionRoute());
-			});
-
-			Spark.path("/projects", () -> {
-				Spark.get("", new ListProjectRoute());
-				Spark.post("", new PostProjectRoute());
-
-				Spark.path("/:project", () -> {
-					Spark.get("", new GetProjectRoute());
-
-				});
-			});
-
-
-			// Default API endpoint
-			Route apiNotFound = (request, response) -> {
-				response.status(HttpStatus.NOT_FOUND_404);
-				return "{\"error\":\"not-found\"}";
-			};
-			Spark.get("/*", apiNotFound);
-			Spark.post("/*", apiNotFound);
-			Spark.put("/*", apiNotFound);
-			Spark.patch("/*", apiNotFound);
-			Spark.delete("/*", apiNotFound);
-			Spark.head("/*", apiNotFound);
-		});
 	}
 
 }
