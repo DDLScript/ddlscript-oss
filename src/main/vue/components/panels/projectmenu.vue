@@ -1,13 +1,13 @@
 <template>
 	<ddlscript-element-panel v-if="hasProject" class='ddlscript-component-panel-projectmenu' hue="foreground" :title="project.name">
 
-		<ddlscript-element-accordionmenu-item label="Scripts" :href="'/project/' + project.id + '/scripts'" :active="true" />
-		<ddlscript-element-accordionmenu-item label="Merge Requests" :href="'/project/' + project.id + '/mergerequests'" />
-		<ddlscript-element-accordionmenu-item label="Mainline" :href="'/project/' + project.id + '/mainline'" />
+		<ddlscript-element-accordionmenu-item label="Scripts" :href="'/projects/' + project.id + '/scripts'" :active="true" />
+		<ddlscript-element-accordionmenu-item label="Merge Requests" :href="'/projects/' + project.id + '/mergerequests'" />
+		<ddlscript-element-accordionmenu-item label="Mainline" :href="'/projects/' + project.id + '/mainline'" />
 
 		<hr v-if="showSettingsGroup" />
 
-		<ddlscript-element-accordionmenu-item v-if="showSettingsGroup" label="Settings" :href="'/project/' + project.id + '/settings'" />
+		<ddlscript-element-accordionmenu-item v-if="showSettingsGroup" label="Settings" :href="'/projects/' + project.id + '/settings'" />
 
 	</ddlscript-element-panel>
 </template>
