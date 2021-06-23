@@ -10,6 +10,9 @@ import lombok.NonNull;
 import java.time.Instant;
 import java.util.Optional;
 
+/**
+ * Summarized schema for scripts.
+ */
 public class ScriptSummarizedSchema {
 
 	@JsonIgnore

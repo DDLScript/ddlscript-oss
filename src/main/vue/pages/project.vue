@@ -13,22 +13,13 @@
 			<ddlscript-component-panel-projectmenu :project="project" />
 		</template>
 
-		<template v-slot:aside>
-			<ddlscript-element-panel hue="foreground" title="Your Open Merge Requests">
-				<div style='padding:4rem 0;text-align:center;'>
-					<ddlscript-element-busyspinner />
-				</div>
-			</ddlscript-element-panel>
-		</template>
-
-		<router-view />
+		<router-view :project="project" />
 	</ddlscript-layout-threecolumn>
 </template>
 
 <script>
 import DDLScript from "../api";
 
-import PanelElement from "../elements/panel.vue";
 import BusySpinnerElement from "../elements/busyspinner.vue";
 
 import ThreeColumnLayout from "../layouts/threecolumn.vue";
@@ -39,7 +30,6 @@ export default {
 	name: 'ddlscript-page-home',
 
 	components: {
-		'ddlscript-element-panel': PanelElement,
 		'ddlscript-element-busyspinner': BusySpinnerElement,
 
 		'ddlscript-layout-threecolumn': ThreeColumnLayout,
@@ -60,9 +50,6 @@ export default {
 		console.log(this.$route.params);
 		try {
 			this.project = await DDLScript.api.projects.get(this.$route.params.id);
-
-			var _scripts = await DDLScript.api.projects.scripts.list(this.project.id);
-			console.log(_scripts);
 		} catch (err) {
 			console.log(err);
 			this.is.error = true;

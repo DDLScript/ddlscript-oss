@@ -12,7 +12,7 @@ import com.ddlscript.sdk.PaginatedCollection;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class ListScriptRoute extends AbstractAuthenticatedRoute<Void, CollectionSchema<ScriptSummarizedSchema>> {
 	@Override
@@ -20,30 +20,31 @@ public class ListScriptRoute extends AbstractAuthenticatedRoute<Void, Collection
 			final AuthenticationContext withAuthenticationContext, final Void withBody, final Request request, final Response response
 	) throws Exception {
 
-		// fetch the project instance
-		var describeProjectRequest = DescribeProjectRequest.builder()
+		final var describeProjectRequest = DescribeProjectRequest.builder()
 				.setIdentifier(new ProjectIdentifier(Integer.parseInt(request.params("project"))))
 				.setAccessibleToUser(withAuthenticationContext.getUserModel())
 				.build();
-		var projectModel = ControllerFactory.INSTANCE
+
+		final var projectModel = ControllerFactory.INSTANCE
 				.getProjectController()
 				.describe(describeProjectRequest)
 				.orElseThrow();
 
-		var filter = FilterScriptRequest.builder()
+		final var filter = FilterScriptRequest.builder()
 				.setProject(projectModel)
 				.build();
-		var collection = ControllerFactory.INSTANCE
+
+		final var collection = ControllerFactory.INSTANCE
 				.getScriptController()
 				.filter(filter);
 
-		var c = new ArrayList<ScriptSummarizedSchema>();
-		for(var x : collection) {
-			c.add(new ScriptSummarizedSchema(x));
-		}
+		final var elements = collection.getElements()
+				.stream()
+				.map(ScriptSummarizedSchema::new)
+				.collect(Collectors.toList());
 
 		return new CollectionSchema<>(PaginatedCollection.<ScriptSummarizedSchema>builder()
-				.setElements(c)
+				.setElements(elements)
 				.setPageCount(collection.getPageCount())
 				.setPageSize(collection.getPageSize())
 				.build());
