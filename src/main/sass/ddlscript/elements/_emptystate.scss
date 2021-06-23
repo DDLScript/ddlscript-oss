@@ -1,0 +1,20 @@
+&-emptystate {
+	padding: 2rem 1rem;
+
+	&-title {
+		font-size: var(--font-size-normal);
+		color: var(--text-color-secondary);
+		padding:1rem 0;
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	&-content {
+
+		&:empty {
+			display:none;
+		}
+	}
+}
