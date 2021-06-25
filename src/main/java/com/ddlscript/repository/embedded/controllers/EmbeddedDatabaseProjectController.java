@@ -31,6 +31,8 @@ public class EmbeddedDatabaseProjectController
 
 	private static final String SQL_ADD_USER = ResourceUtils.getResourceAsString("/database/dml/projects/users/create.sql");
 
+	private static final String SQL_ADD_USER_PERMISSIONS = ResourceUtils.getResourceAsString("/database/dml/projects/users/permissions/create.sql");
+
 	public EmbeddedDatabaseProjectController(@NonNull final DataSource withDataSource) {
 		super(withDataSource);
 	}
@@ -69,6 +71,17 @@ public class EmbeddedDatabaseProjectController
 
 		super.update(
 				SQL_ADD_USER
+				, projectIdentifier.getRawValue()
+				, withRequest.getUserCreated()
+						.getIdentifier()
+						.getRawValue()
+				, withRequest.getUserCreated()
+						.getIdentifier()
+						.getRawValue()
+		);
+
+		super.update(
+				SQL_ADD_USER_PERMISSIONS
 				, projectIdentifier.getRawValue()
 				, withRequest.getUserCreated()
 						.getIdentifier()
