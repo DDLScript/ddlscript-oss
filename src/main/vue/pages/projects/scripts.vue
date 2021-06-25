@@ -87,8 +87,9 @@ export default {
 			this.is.loading = true;
 			try {
 
-				this.scripts = await DDLScript.api.projects.scripts.list(this.project.id);
-				console.log(this.scripts);
+				var _scripts = await DDLScript.api.projects.scripts.list(this.project.id);
+				this.scripts = _scripts.items;
+				console.log(_scripts);
 			} catch (err) {
 				console.log(err);
 				this.is.error = true;
