@@ -78,7 +78,7 @@ export default {
 				const resp = await DDLScript.api.projects.create(this.new_project);
 
 				// redirect
-				window.location = "/project/" + resp.id;
+				window.location = "/projects/" + resp.id;
 			} catch (err) {
 				this.is.failed = true;
 				this.is.submitting = false;

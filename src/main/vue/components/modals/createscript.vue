@@ -7,8 +7,8 @@
 
 			<div style="padding:0 1rem; width:32rem;">
 				<!-- field: script title -->
-				<ddlscript-element-formfield title="Script Title" for="script-name" >
-					<ddlscript-element-input-textfield type='text' id='script-name' :value="new_script.name" maxlength="100" placeholder="... up to 100 characters" @updatevalue="new_script.name = $event" />
+				<ddlscript-element-formfield title="Script Title" for="script-title" >
+					<ddlscript-element-input-textfield type='text' id='script-title' :value="new_script.title" maxlength="100" placeholder="... up to 100 characters" @updatevalue="new_script.title = $event" />
 				</ddlscript-element-formfield>
 
 				<!-- action buttons -->
@@ -57,13 +57,13 @@ export default {
 		},
 
 		new_script: {
-			name: ""
+			title: ""
 		}
 	}),
 
 	computed: {
 		canSubmit() {
-			return !this.is.submitting && this.new_script.name.trim().length > 3 && this.new_script.name.trim().length <= 100;
+			return !this.is.submitting && this.new_script.title.trim().length > 3 && this.new_script.title.trim().length <= 100;
 		},
 
 		canCancel() {
