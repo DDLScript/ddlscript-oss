@@ -9,6 +9,10 @@ export default (DDLScript) => ({
 		"/projects"
 	),
 
+	get: async (project_id) => await DDLScript.get(
+		"/projects/" + project_id
+	),
+
 	create: async (payload) => await DDLScript.post(
 		"/projects"
 		, {}
@@ -17,8 +21,12 @@ export default (DDLScript) => ({
 		}
 	),
 
-	get: async (id) => await DDLScript.get(
-		"/projects/" + id
+	update: async (project_id, payload) => await DDLScript.patch(
+		"/projects/" + project_id
+		, {}
+		, {
+			name: payload.name
+		}
 	),
 
 });

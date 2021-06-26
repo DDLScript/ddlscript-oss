@@ -15,4 +15,12 @@ export default (DDLScript) => ({
 		}
 	),
 
+	update: async (project_id, script_id, payload) => await DDLScript.patch(
+		"/projects/" + project_id + "/scripts/" + script_id
+		, {}
+		, {
+			title: payload.title
+		}
+	),
+
 });

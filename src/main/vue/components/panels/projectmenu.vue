@@ -7,7 +7,10 @@
 
 		<hr v-if="showSettingsGroup" />
 
-		<ddlscript-element-accordionmenu-item v-if="showSettingsGroup" label="Settings" :href="'/projects/' + project.id + '/settings'" />
+		<ddlscript-element-accordionmenu-group label="Settings">
+			<ddlscript-element-accordionmenu-item v-if="showSettingsGroup" label="Project Details" :href="'/projects/' + project.id + '/settings'" />
+			<ddlscript-element-accordionmenu-item v-if="showSettingsGroup" label="Script Templates" :href="'/projects/' + project.id + '/templates'" />
+		</ddlscript-element-accordionmenu-group>
 
 	</ddlscript-element-panel>
 </template>
@@ -15,6 +18,7 @@
 <script>
 import PanelElement from "../../elements/panel.vue";
 import AccordionMenuItem from "../../elements/accordionmenu/item.vue";
+import AccordionMenuGroup from "../../elements/accordionmenu/group.vue";
 
 export default {
 	name: 'ddlscript-component-panel-projectmenu',
@@ -22,6 +26,7 @@ export default {
 	components: {
 		'ddlscript-element-panel': PanelElement,
 		'ddlscript-element-accordionmenu-item': AccordionMenuItem,
+		'ddlscript-element-accordionmenu-group': AccordionMenuGroup,
 	},
 
 	props: {
