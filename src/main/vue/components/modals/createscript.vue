@@ -82,7 +82,7 @@ export default {
 				const resp = await DDLScript.api.projects.scripts.create(this.project.id, this.new_script);
 
 				// redirect
-				window.location = "/project/" + this.project.id + "/scripts/" + resp.id;
+				window.location = "/projects/" + this.project.id + "/scripts/" + resp.id;
 			} catch (err) {
 				this.is.failed = true;
 				this.is.submitting = false;
@@ -93,6 +93,10 @@ export default {
 		onCancelClick() {
 			this.is.closed = true;
 		}
-	}
+	},
+
+	async mounted() {
+		this.$nextTick(() => document.querySelector("#script-title").focus());
+	},
 }
 </script>

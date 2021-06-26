@@ -1,0 +1,30 @@
+&-scriptlistitem {
+
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+
+	&:hover {
+		background: var(--color-background);
+		filter: brightness(95%);
+	}
+
+	& > .id-link {
+		color: var(--text-color-accent);
+		font-weight: var(--font-weight-bold);
+		text-align:center;
+		width: 6rem;
+	}
+
+	& > div {
+		padding: 0.5rem 1rem;
+
+		& > span {
+			font-size: var(--font-size-small);
+		}
+	}
+
+	+ .ddlscript-component-scriptlistitem {
+		border-top: 1px solid var(--color-divider);
+	}
+}

@@ -40,7 +40,7 @@ public class ListScriptRoute extends AbstractAuthenticatedRoute<Void, Collection
 
 		final var elements = collection.getElements()
 				.stream()
-				.map(ScriptSummarizedSchema::new)
+				.map(scriptModel -> new ScriptSummarizedSchema(withAuthenticationContext, scriptModel))
 				.collect(Collectors.toList());
 
 		return new CollectionSchema<>(PaginatedCollection.<ScriptSummarizedSchema>builder()

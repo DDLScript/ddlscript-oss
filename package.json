@@ -16,6 +16,7 @@
     "@bugsnag/core": "^7.3.5",
     "@bugsnag/js": "^7.4.0",
     "@bugsnag/plugin-vue": "^7.3.5",
+    "date-fns": "^2.22.1",
     "mount-vue-component": "^0.10.0",
     "vue": "^3.0.0",
     "vue-axios": "^3.0.1",

@@ -20,6 +20,8 @@
 		<ddlscript-element-emptystate v-if="!is.loading && !scripts.length" title="No Scripts Found">
 			<span>Refine your filters and try again.</span>
 		</ddlscript-element-emptystate>
+
+		<ddlscript-component-scriptlistitem v-for="script in scripts" :key="script.id" :project="project" :script="script" />
 	</ddlscript-element-panel>
 </template>
 
@@ -33,6 +35,7 @@ import ButtonElement from "../../elements/button.vue";
 import EmptyStateElement from "../../elements/emptystate.vue";
 
 import CreateScriptModal from "../../components/modals/createscript.vue";
+import ScriptListItemComponent from "../../components/scriptlistitem.vue";
 
 export default {
 	name: 'ddlscript-page-home',
@@ -42,6 +45,7 @@ export default {
 		'ddlscript-element-busyspinner': BusySpinnerElement,
 		'ddlscript-element-button': ButtonElement,
 		'ddlscript-element-emptystate': EmptyStateElement,
+		'ddlscript-component-scriptlistitem': ScriptListItemComponent
 	},
 
 	props: {
@@ -89,6 +93,7 @@ export default {
 
 				var _scripts = await DDLScript.api.projects.scripts.list(this.project.id);
 				this.scripts = _scripts.items;
+				this.scripts.sort((a, b) => ('' + b.timestamp_created.toLowerCase()).localeCompare('' + a.timestamp_created.toLowerCase()));
 				console.log(_scripts);
 			} catch (err) {
 				console.log(err);
