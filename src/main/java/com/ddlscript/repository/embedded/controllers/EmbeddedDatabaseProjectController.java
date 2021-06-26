@@ -6,6 +6,7 @@ import com.ddlscript.def.models.projects.DescribeProjectRequest;
 import com.ddlscript.def.models.projects.FilterProjectRequest;
 import com.ddlscript.def.models.projects.ProjectIdentifier;
 import com.ddlscript.def.models.projects.ProjectModel;
+import com.ddlscript.def.models.projects.UpdateProjectRequest;
 import com.ddlscript.repository.embedded.models.EmbeddedDatabaseProjectModel;
 import com.ddlscript.repository.embedded.rowdata.ProjectRowData;
 import com.ddlscript.sdk.PaginatedCollection;
@@ -26,6 +27,8 @@ public class EmbeddedDatabaseProjectController
 	private static final String SQL_FIND = ResourceUtils.getResourceAsString("/database/dml/projects/find.sql");
 
 	private static final String SQL_CREATE = ResourceUtils.getResourceAsString("/database/dml/projects/create.sql");
+
+	private static final String SQL_UPDATE = ResourceUtils.getResourceAsString("/database/dml/projects/update.sql");
 
 	private static final String SQL_DESCRIBE = ResourceUtils.getResourceAsString("/database/dml/projects/describe.sql");
 
@@ -132,5 +135,20 @@ public class EmbeddedDatabaseProjectController
 		);
 		return Optional.ofNullable(instance)
 				.map(EmbeddedDatabaseProjectModel::new);
+	}
+
+	/**
+	 * {@inheritDoc}.
+	 */
+	@Override
+	public Optional<ProjectModel> update(@NonNull final ProjectModel withProject, @NonNull final UpdateProjectRequest withRequest) {
+		super.update(
+				SQL_UPDATE
+				, withRequest.getName()
+				, withProject.getIdentifier()
+						.getRawValue()
+		);
+
+		return this.find(withProject.getIdentifier());
 	}
 }

@@ -1,0 +1,3 @@
+UPDATE `Project` __P__
+SET NAME = IFNULL(CAST(? AS VARCHAR(100)), __P__.NAME)
+WHERE __P__.ID = ?

@@ -2,6 +2,7 @@ package com.ddlscript.routegroups.api;
 
 import com.ddlscript.routes.api.projects.GetProjectRoute;
 import com.ddlscript.routes.api.projects.ListProjectRoute;
+import com.ddlscript.routes.api.projects.PatchProjectRoute;
 import com.ddlscript.routes.api.projects.PostProjectRoute;
 import com.ddlscript.routes.api.projects.scripts.ListScriptRoute;
 import com.ddlscript.routes.api.projects.scripts.PostScriptRoute;
@@ -16,6 +17,7 @@ public class ProjectsApiRouteGroup implements RouteGroup {
 
 		Spark.path("/:project", () -> {
 			Spark.get("", new GetProjectRoute());
+			Spark.patch("", new PatchProjectRoute());
 
 			Spark.path("/scripts", () -> {
 				Spark.get("", new ListScriptRoute());
