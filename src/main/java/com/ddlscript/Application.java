@@ -1,9 +1,9 @@
 package com.ddlscript;
 
-import com.ddlscript.factories.DataSourceFactory;
+import com.ddlscript.app.factories.DataSourceFactory;
 import com.ddlscript.repository.embedded.EmbeddedDatabaseMutator;
-import com.ddlscript.routegroups.ApiRouteGroup;
-import com.ddlscript.routes.ApplicationRoute;
+import com.ddlscript.app.routegroups.ApiRouteGroup;
+import com.ddlscript.app.routes.ApplicationRoute;
 import lombok.experimental.UtilityClass;
 import spark.Spark;
 
