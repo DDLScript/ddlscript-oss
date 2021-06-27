@@ -11,10 +11,18 @@
 		<div style="padding:0 1rem 1rem">
 			<!-- field: project name -->
 			<ddlscript-element-formfield title="Project Name" for="project_name" >
-				<ddlscript-element-input-textfield type='text' id='project_name' :value="updated_project.name" :disabled="is.submitting" :maxlength="100" placeholder="... up to 100 characters ..." @updatevalue="updated_project.name = $event" @onkeyup="onProjectTitleKeyUp" />
+				<ddlscript-element-input-textfield type='text' id='project_name' :value="updated_project.name" :disabled="is.submitting" maxlength="100" placeholder="... up to 100 characters ..." @updatevalue="updated_project.name = $event" @onkeyup="onProjectTitleKeyUp" />
 			</ddlscript-element-formfield>
 		</div>
 
+	</ddlscript-element-panel>
+
+	<ddlscript-element-panel v-if="canDelete" hue="foreground" title="Delete Project" style="margin-top:1rem;">
+		<template v-slot:actions>
+			<ddlscript-element-button label="Delete Project" hue="negative" :disabled="is.deleting" @click="onDeleteClicked" />
+		</template>
+
+		<p data-hue="negative" style="padding:1rem">This action will permanently delete the project and all it's related data. This action is permanent cannot be reveresed.</p>
 	</ddlscript-element-panel>
 </template>
 
@@ -42,7 +50,8 @@ export default {
 
 	data: () => ({
 		is: {
-			submitting: false
+			submitting: false,
+			deleting: false
 		},
 
 		messages: {
@@ -57,6 +66,10 @@ export default {
 	computed: {
 		canSubmit() {
 			return !this.is.submitting && this.updated_project.name.length >= 1 && this.updated_project.name.length <= 100;
+		},
+
+		canDelete() {
+			return this.$session.systemPermissions.includes("DELETE_PROJECTS");
 		}
 	},
 
@@ -77,6 +90,16 @@ export default {
 
 		async onProjectTitleKeyUp(event) {
 			(13 == event.keyCode) && this.onSaveClicked();
+		},
+
+		async onDeleteClicked() {
+			this.is.deleting = true;
+			try {
+				await DDLScript.api.projects.delete(this.project.id);
+				window.location = "/";
+			} catch {
+				this.is.deleting = false;
+			}
 		},
 	},
 
