@@ -38,7 +38,7 @@ import CreateScriptModal from "../../components/modals/createscript.vue";
 import ScriptListItemComponent from "../../components/scriptlistitem.vue";
 
 export default {
-	name: 'ddlscript-page-home',
+	name: 'ddlscript-page-project-scripts',
 
 	components: {
 		'ddlscript-element-panel': PanelElement,

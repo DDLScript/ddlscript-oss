@@ -49,7 +49,7 @@ export default {
 	async mounted() {
 		console.log(this.$route.params);
 		try {
-			this.project = await DDLScript.api.projects.get(this.$route.params.id);
+			this.project = await DDLScript.api.projects.get(this.$route.params.project);
 		} catch (err) {
 			console.log(err);
 			this.is.error = true;

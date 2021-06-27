@@ -27,7 +27,7 @@ import FormFieldElement from "../../elements/formfield.vue";
 import TextFieldInputElement from "../../elements/inputs/textfield.vue";
 
 export default {
-	name: 'ddlscript-page-home',
+	name: 'ddlscript-page-project-settings',
 
 	components: {
 		'ddlscript-element-panel': PanelElement,
