@@ -27,7 +27,7 @@
 
 <script>
 import DDLScript from "../../api";
-import { mount } from 'mount-vue-component'
+import { mount } from 'mount-vue-component';
 
 import PanelElement from "../../elements/panel.vue";
 import BusySpinnerElement from "../../elements/busyspinner.vue";
