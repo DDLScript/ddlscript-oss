@@ -27,6 +27,8 @@ public class EmbeddedDatabaseProjectController
 
 	private static final String SQL_CREATE = ResourceUtils.getResourceAsString("/database/dml/projects/create.sql");
 
+	private static final String SQL_DELETE = ResourceUtils.getResourceAsString("/database/dml/projects/delete.sql");
+
 	private static final String SQL_UPDATE = ResourceUtils.getResourceAsString("/database/dml/projects/update.sql");
 
 	private static final String SQL_DESCRIBE = ResourceUtils.getResourceAsString("/database/dml/projects/describe.sql");
@@ -149,5 +151,17 @@ public class EmbeddedDatabaseProjectController
 		);
 
 		return this.find(withProject.getIdentifier());
+	}
+
+	/**
+	 * {@inheritDoc}.
+	 */
+	@Override
+	public void delete(@NonNull final ProjectModel withProject) {
+		super.update(
+				SQL_DELETE
+				, withProject.getIdentifier()
+						.getRawValue()
+		);
 	}
 }

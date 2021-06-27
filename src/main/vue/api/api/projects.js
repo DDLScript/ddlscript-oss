@@ -13,6 +13,10 @@ export default (DDLScript) => ({
 		"/projects/" + project_id
 	),
 
+	delete: async (project_id) => await DDLScript.delete(
+		"/projects/" + project_id
+	),
+
 	create: async (payload) => await DDLScript.post(
 		"/projects"
 		, {}

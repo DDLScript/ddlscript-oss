@@ -26,7 +26,12 @@ public enum SystemPermission implements Model {
 	/**
 	 * Grants the user the ability to manage API keys.
 	 */
-	MANAGE_API_KEYS(4);
+	MANAGE_API_KEYS(4),
+
+	/**
+	 * Grants the user the ability to delete projects they have access to.
+	 */
+	DELETE_PROJECTS(5);
 
 	public static SystemPermission ofIdentifier(final int withValue) {
 		for (SystemPermission permission : SystemPermission.values()) {
