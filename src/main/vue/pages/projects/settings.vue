@@ -1,5 +1,5 @@
 <template>
-	<ddlscript-element-panel hue="foreground" title="Settings">
+	<ddlscript-element-panel v-if="canEditSettings" hue="foreground" title="Settings">
 		<template v-slot:actions>
 			<ddlscript-element-button label="Save Changes" hue="positive" :disabled="!canSubmit" @click="onSaveClicked" />
 		</template>
@@ -70,6 +70,10 @@ export default {
 
 		canDelete() {
 			return this.$session.systemPermissions.includes("DELETE_PROJECTS");
+		},
+
+		canEditSettings() {
+			return this.project.permissions && this.project.permissions.includes("MANAGE_PROJECT_SETTINGS");
 		}
 	},
 

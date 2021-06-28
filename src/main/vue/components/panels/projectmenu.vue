@@ -7,9 +7,8 @@
 
 		<hr v-if="showSettingsGroup" />
 
-		<ddlscript-element-accordionmenu-group label="Settings">
-			<ddlscript-element-accordionmenu-item v-if="showSettingsGroup" label="Project Details" :href="'/projects/' + project.id + '/settings'" />
-			<ddlscript-element-accordionmenu-item v-if="showSettingsGroup" label="Script Templates" :href="'/projects/' + project.id + '/templates'" />
+		<ddlscript-element-accordionmenu-group label="Settings" v-if="showSettingsGroup">
+			<ddlscript-element-accordionmenu-item v-for="item in settingsItems" :key="item.label" :label="item.label" :href="item.href" />
 		</ddlscript-element-accordionmenu-group>
 
 	</ddlscript-element-panel>
@@ -39,7 +38,27 @@ export default {
 		},
 
 		showSettingsGroup() {
-			return this.project && this.project.permissions && this.project.permissions.includes("MANAGE_PROJECT_SETTINGS");
+			return this.project && this.settingsItems.length > 0;
+		},
+
+		settingsItems() {
+			var items = [];
+
+			if ((this.project.permissions && this.project.permissions.includes("MANAGE_PROJECT_SETTINGS")) || this.$session.systemPermissions.includes("DELETE_PROJECTS")) {
+				items.push({
+					"label": "Project Details"
+					, "href": '/projects/' + this.project.id + '/settings'
+				});
+			}
+
+			if ((this.project.permissions && this.project.permissions.includes("MANAGE_PROJECT_SETTINGS"))) {
+				items.push({
+					"label": "Script Templates"
+					, "href": '/projects/' + this.project.id + '/templates'
+				});
+			}
+
+			return items;
 		}
 	},
 };
