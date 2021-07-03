@@ -2,9 +2,9 @@
 
 Platform, written in Java and Vue.js 3, for maintaining a ledger of DDL migrations applied to a database.
 
-![](https://img.shields.io/github/v/release/ddlscript/ddlscript-oss?label=latest%20release&style=for-the-badge)
-![](https://img.shields.io/github/commit-activity/m/ddlscript/ddlscript-oss?style=for-the-badge)
-![](https://img.shields.io/github/sponsors/ddlscript?logo=github&style=for-the-badge)
+[![Latest Release](https://img.shields.io/github/v/release/ddlscript/ddlscript-oss?label=latest%20release&style=for-the-badge)](https://github.com/ddlscript/ddlscript-oss/releases)
+![Commit Activity](https://img.shields.io/github/commit-activity/m/ddlscript/ddlscript-oss?style=for-the-badge)
+![Sponsors](https://img.shields.io/github/sponsors/ddlscript?logo=github&style=for-the-badge)
 
 -----
 
