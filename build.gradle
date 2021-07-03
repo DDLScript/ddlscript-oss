@@ -1,0 +1,258 @@
+// AWS_PROFILE=test-gujarat gradle build
+
+plugins {
+    id 'application'
+    id 'java-library'
+    id 'io.freefair.lombok' version '5.1.1'
+    id 'checkstyle'
+    id 'jacoco' // Code coverage
+    id "com.github.johnrengelman.shadow" version "6.0.0" // Uber-JAR builder
+    id "com.github.node-gradle.node" version "2.2.4" // Node
+    id 'io.miret.etienne.sass' version '1.1.1' // SASS Compiler
+}
+
+group = 'com.ddlscript'
+version = '0.0.0'
+mainClassName = 'com.ddlscript.spark.Bootstrap'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.16' // LomBok Project
+    annotationProcessor 'org.projectlombok:lombok:1.18.16' // LomBok Project
+
+    implementation 'at.favre.lib:bcrypt:0.9.0'
+    implementation 'com.bugsnag:bugsnag:3.6.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.12.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1'
+    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.12.1'
+    implementation 'com.github.rjeschke:txtmark:0.13'
+    implementation 'com.h2database:h2:1.4.200' // H2 Embedded Database
+    implementation 'com.sparkjava:spark-core:2.9.2'
+    implementation 'commons-dbutils:commons-dbutils:1.7'
+    implementation 'commons-validator:commons-validator:1.6'
+    implementation 'io.leangen.graphql:spqr:0.10.1'
+    implementation 'org.apache.commons:commons-dbcp2:2.7.0'
+    implementation 'org.apache.commons:commons-text:1.6'
+    implementation 'org.reflections:reflections:0.9.12'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.16' // LomBok Project
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16' // LomBok Project
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+compileJava {
+    dependsOn 'compileSass'
+    dependsOn 'yarnBuild'
+    // dependsOn 'nodeBuildJS'
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/jacoco")
+}
+
+def coverageSourceDirs = [
+        'src/main/java'
+]
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // report is always generated after tests run
+}
+
+jacocoTestReport {
+    dependsOn test// tests are required to run before generating the report
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/reports/jacoco")
+    }
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+//        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
+    }
+}
+
+processResources {
+    filesMatching('**/*.html') {
+        filter {
+            it.replace("/css/ddlscript.css", "/css/ddlscript.css?v=${project.property('version')}")
+        }
+    }
+}
+
+sass {
+    version = '1.26.10'
+    directory = file ("${rootDir}/.gradle/sass")
+    baseUrl = 'https://github.com/sass/dart-sass/releases/download'
+}
+
+compileSass {
+    // Directory where to output generated CSS:
+    outputDir = project.file ("${projectDir}/src/main/resources/webroot/css")
+
+    // Source directory containing sass to compile:
+    sourceDir = project.file ("${projectDir}/src/main/sass")
+
+    // Adds a directory to sass load path (default is empty):
+    // loadPath project.file ('sass-lib')
+    // loadPath project.file ('/var/lib/compass')
+
+    // Set the output style:
+    // Possible values are "expanded" and "compressed", default is "expanded".
+    style = expanded
+
+    // Don’t emit a @charset for CSS with non-ASCII chars (default to emit):
+    noCharset ()
+
+    // When an error occurs, do not emit a stylesheet describing it:
+    // (Default to emit)
+    noErrorCss ()
+
+    // Watch sass files in sourceDir for changes
+    // watch ()
+
+    // Source map style:
+    //  - file: output source map in a separate file (default)
+    //  - embed: embed source map in CSS
+    //  - none: do not emit source map.
+    sourceMap = file
+
+    // How to link source maps to source files [relative (default) or absolute]:
+    sourceMapUrls = relative
+}
+
+task yarnBuild(type: YarnTask) {
+    dependsOn 'yarn'
+    args = ['build']
+}
+
+node {
+    // Whether to download and install a specific Node.js version or not
+    // If false, it will use the globally installed Node.js
+    // If true, it will download node using above parameters
+    // Note that npm is bundled with Node.js
+    download = true
+
+    // Version of node to download and install (only used if download is true)
+    // It will be unpacked in the workDir
+    version = "12.18.3"
+
+    // Version of npm to use
+    // If specified, installs it in the npmWorkDir
+    // If empty, the plugin will use the npm command bundled with Node.js
+    npmVersion = "6.14.6"
+
+    // Version of Yarn to use
+    // Any Yarn task first installs Yarn in the yarnWorkDir
+    // It uses the specified version if defined and the latest version otherwise (by default)
+    yarnVersion = "1.22.5"
+
+    // Base URL for fetching node distributions
+    // Only used if download is true
+    // Change it if you want to use a mirror
+    // Or set to null if you want to add the repository on your own.
+    distBaseUrl = "https://nodejs.org/dist"
+
+    // The npm command executed by the npmInstall task
+    // By default it is install but it can be changed to ci
+    npmInstallCommand = "install"
+
+    // The directory where Node.js is unpacked (when download is true)
+    workDir = file("${project.projectDir}/.gradle/nodejs")
+
+    // The directory where npm is installed (when a specific version is defined)
+    npmWorkDir = file("${project.projectDir}/.gradle/npm")
+
+    // The directory where yarn is installed (when a Yarn task is used)
+    yarnWorkDir = file("${project.projectDir}/.gradle/yarn")
+}
+
+task copyNativeDeps(type: Copy) {
+    from(configurations.compile + configurations.testCompile) {
+        include '*.dll'
+        include '*.dylib'
+        include '*.so'
+    }
+    into 'build/libs'
+}
+
+test {
+    dependsOn copyNativeDeps
+    systemProperty "java.library.path", 'build/libs'
+}
+
+processResources {
+    filesMatching('**/*.html') {
+        filter {
+            it.replace('${project.version}', project.property('version'))
+        }
+    }
+    filesMatching('**/*.js') {
+        filter {
+            it.replace('${project.version}', project.property('version'))
+        }
+    }
+}
+
+task bumpVersion {
+    doLast {
+
+        println "Bumping version number..."
+
+        def date = new Date()
+        def calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int currentYear = calendar.get(Calendar.YEAR);
+        int currentMonth = calendar.get(Calendar.MONTH) + 1;
+
+
+        String previousVersion = version
+        def (a, b, c) = version.tokenize('.')
+        int buildYear = a.toInteger()
+        int buildMonth = b.toInteger()
+        int buildNumber = c.toInteger()
+
+        if (buildYear == currentYear && buildMonth == currentMonth) {
+            buildNumber++
+        } else {
+            buildYear = currentYear
+            buildMonth = currentMonth
+            buildNumber = 1
+        }
+
+        println "$previousVersion -> $buildYear.$buildMonth.$buildNumber"
+
+        // update the version number in the build file
+        def updated = buildFile.getText()
+        updated = updated.replaceFirst("version = '$version'","version = '$buildYear.$buildMonth.$buildNumber'")
+        buildFile.setText(updated)
+    }
+}
+
+task gitTag {
+    doLast {
+        def cmd = "git tag $version"
+        println cmd.execute().text.trim();
+    }
+}

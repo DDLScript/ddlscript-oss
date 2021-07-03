@@ -1,0 +1,22 @@
+&-threecolumn {
+	display:flex;
+	justify-content: center;
+	align-items: flex-start;
+	flex-wrap: nowrap;
+
+	& > .nav {
+		width: 24rem;
+		flex: none;
+		margin: 1rem;
+	}
+
+	& > .main {
+		width: 64rem;
+		margin: 0 1rem;
+
+		& > * {
+
+			margin: 1rem 0;
+		}
+	}
+}

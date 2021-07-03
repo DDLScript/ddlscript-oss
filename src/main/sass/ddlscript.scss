@@ -1,0 +1,148 @@
+:root {
+    --palette-primary: #244c88;
+    --palette-background: #f3f2ef;
+    --palette-foreground: #fff;
+    --palette-positive: #2dbc4e;
+    --palette-warning: #F05E23;
+    --palette-negative: #af1629;
+    --palette-accessibility: red;
+
+    --palette-divider-light: rgba(255, 255, 255, 8%);
+    --palette-divider-dark: rgba(0, 0, 0, 8%);
+
+    --text-white-primary: #fff;
+    --text-white-secondary: #fbfbfc;
+
+    --text-black-primary: rgba(0,0,0,0.84);
+    --text-black-secondary: rgba(0,0,0,0.54);
+
+    --text-color-primary: var(--text-black-primary);
+    --text-color-secondary: var(--text-black-secondary);
+
+    --font-weight-normal: 500;
+    --font-weight-bold: 700;
+
+    --font-size-baseline: 12px;
+    --font-size-normal: 1.6rem;
+    --font-size-small: 0.9rem;
+
+    --color-background: var(--palette-background);
+}
+
+
+$color-blue: #244C88;
+$color-light-gray: #f3f2ef;
+$color-lighter-gray: #fff;
+$color-white: #fff;
+$color-green: #2dbc4e;
+$color-red: #af1629;
+$color-orange: #F05E23;
+$color-black: #222;
+
+$text-white-primary: #fff;
+$text-white-secondary: #fbfbfc;
+
+$text-black-primary: rgba(0,0,0,0.84);
+$text-black-secondary: rgba(0,0,0,0.54);
+
+$accessibility-indicator: red;
+
+@import "./reset.scss";
+
+html {
+    --color-background: var(--palette-background);
+    --color-divider: var(--palette-divider-dark);
+    --text-color-primary: var(--text-black-primary);
+    --text-color-secondary: var(--text-black-secondary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
+}
+
+body {
+    min-width: 88rem;
+    overflow: auto;
+}
+
+*[data-hue=background] {
+    --color-background: var(--palette-background);
+    --color-divider: var(--palette-divider-dark);
+    --text-color-primary: var(--text-black-primary);
+    --text-color-secondary: var(--text-black-secondary);
+    --text-color-accent: var(--palette-primary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
+}
+
+*[data-hue=foreground] {
+    --color-background: var(--palette-foreground);
+    --color-divider: var(--palette-divider-dark);
+    --text-color-primary: var(--text-black-primary);
+    --text-color-secondary: var(--text-black-secondary);
+    --text-color-accent: var(--palette-primary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
+}
+
+*[data-hue=primary] {
+    --color-background: var(--palette-primary);
+    --color-divider: var(--palette-divider-light);
+    --text-color-primary: var(--text-white-primary);
+    --text-color-secondary: var(--text-white-secondary);
+    --text-color-accent: var(--text-white-primary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
+}
+
+*[data-hue=warning] {
+    --color-background: var(--palette-warning);
+    --color-divider: var(--palette-divider-light);
+    --text-color-primary: var(--text-white-primary);
+    --text-color-secondary: var(--text-white-secondary);
+    --text-color-accent: var(--text-white-primary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
+}
+
+*[data-hue=positive] {
+    --color-background: var(--palette-positive);
+    --color-divider: var(--palette-divider-light);
+    --text-color-primary: var(--text-white-primary);
+    --text-color-secondary: var(--text-white-secondary);
+    --text-color-accent: var(--text-white-primary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
+}
+
+*[data-hue=negative] {
+    --color-background: var(--palette-negative);
+    --color-divider: var(--palette-divider-light);
+    --text-color-primary: var(--text-white-primary);
+    --text-color-secondary: var(--text-white-secondary);
+    --text-color-accent: var(--text-white-primary);
+
+    background-color: var(--color-background);
+    color: var(--text-color-primary);
+    fill: var(--text-color-primary);
+}
+
+@import "./mixins/transitions";
+
+@import "./ddlscript/elements/inputs";
+
+.ddlscript {
+    @import "./ddlscript/layouts"
+            , "./ddlscript/elements"
+            , "./ddlscript/components";
+}

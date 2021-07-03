@@ -1,0 +1,32 @@
+&-globalheader {
+
+	display: flex;
+	justify-content: stretch;
+	align-items: center;
+	flex-wrap: nowrap;
+
+	& > .logo {
+		flex: none;
+		display: block;
+		padding: 1rem;
+		opacity: 0.666;
+
+		&:hover {
+			opacity: 1;
+		}
+
+		svg {
+			height: 1.5rem;
+		}
+	}
+
+	& > .menu {
+		flex: 1 100%;
+		text-align: center;
+	}
+
+	& > .account {
+		flex: none;
+
+	}
+}
