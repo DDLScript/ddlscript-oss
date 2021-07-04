@@ -8,6 +8,9 @@ import com.ddlscript.sdk.Model;
 import java.time.Instant;
 import java.util.Optional;
 
+/**
+ * Script Template.
+ */
 public interface ScriptTemplateModel extends Model {
 
 	/**
