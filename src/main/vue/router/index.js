@@ -4,6 +4,7 @@ import HomePage from '../pages/home.vue';
 import ProjectPage from '../pages/project.vue';
 import ScriptsProjectPage from '../pages/projects/scripts.vue';
 import SettingsProjectPage from '../pages/projects/settings.vue';
+import TemplatesProjectPage from '../pages/projects/templates.vue';
 import ScriptEditorPage from '../pages/projects/scripts/editor.vue';
 
 const routes = [
@@ -13,6 +14,7 @@ const routes = [
 		{	path: '', component: ScriptsProjectPage	},
 		{	path: 'scripts', component: ScriptsProjectPage	},
 		{	path: 'settings', component: SettingsProjectPage	},
+		{	path: 'templates', component: TemplatesProjectPage	},
 	]	},
 ];
 
