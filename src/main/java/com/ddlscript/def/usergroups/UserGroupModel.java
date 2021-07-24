@@ -1,14 +1,12 @@
 package com.ddlscript.def.usergroups;
 
+import com.ddlscript.def.common.AuditedModel;
 import com.ddlscript.sdk.models.IdentifiableModel;
-import com.ddlscript.def.users.UserIdentifier;
-
-import java.time.Instant;
 
 /**
  * Represents a single user group within the system.
  */
-public interface UserGroupModel extends IdentifiableModel<UserGroupIdentifier> {
+public interface UserGroupModel extends IdentifiableModel<UserGroupIdentifier>, AuditedModel {
 
 	/**
 	 * Maximum number of characters allowed in the NAME field.
@@ -19,20 +17,6 @@ public interface UserGroupModel extends IdentifiableModel<UserGroupIdentifier> {
 	 * Maximum number of characters allowed in the NAME field.
 	 */
 	int MAX_DESCRIPTION_LENGTH = 10000;
-
-	/**
-	 * Returns the identifier of the user whom created the user group.
-	 *
-	 * @return User Identifier.
-	 */
-	UserIdentifier getCreatedUserIdentifier();
-
-	/**
-	 * Returns the timestamp of when the user group was created.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
 
 	/**
 	 * Returns the name of the User Group.

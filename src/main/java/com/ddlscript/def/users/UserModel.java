@@ -1,5 +1,6 @@
 package com.ddlscript.def.users;
 
+import com.ddlscript.def.common.TimestampCreatedModel;
 import com.ddlscript.sdk.models.IdentifiableModel;
 
 import java.time.Instant;
@@ -7,7 +8,7 @@ import java.time.Instant;
 /**
  * Represents a single user within the system.
  */
-public interface UserModel extends IdentifiableModel<UserIdentifier> {
+public interface UserModel extends IdentifiableModel<UserIdentifier>, TimestampCreatedModel {
 
 	/**
 	 * Maximum number of characters allowed in the NAME field.
@@ -23,13 +24,6 @@ public interface UserModel extends IdentifiableModel<UserIdentifier> {
 	 * Maximum number of characters allowed in the EMAIL field.
 	 */
 	int MAX_EMAIL_LENGTH = 500;
-
-	/**
-	 * Returns the timestamp of when the user was created.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
 
 	/**
 	 * Returns the timestamp of when the user was archived.

@@ -1,26 +1,19 @@
 package com.ddlscript.def.projects;
 
+import com.ddlscript.def.common.AuditedModel;
 import com.ddlscript.sdk.models.IdentifiableModel;
-import com.ddlscript.def.users.UserIdentifier;
 
 import java.time.Instant;
 
 /**
  * Represents a single project within the system.
  */
-public interface ProjectModel extends IdentifiableModel<ProjectIdentifier> {
+public interface ProjectModel extends IdentifiableModel<ProjectIdentifier>, AuditedModel {
 
 	/**
 	 * Maximum number of characters allowed in the NAME field.
 	 */
 	int MAX_NAME_LENGTH = 100;
-
-	/**
-	 * Returns the timestamp of when the project was created.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
 
 	/**
 	 * Returns the timestamp of when the project was deleted.
@@ -42,11 +35,4 @@ public interface ProjectModel extends IdentifiableModel<ProjectIdentifier> {
 	 * @return database type.
 	 */
 	String getDatabaseType();
-
-	/**
-	 * Returns the identifier of the user whom created the project.
-	 *
-	 * @return User Identifier.
-	 */
-	UserIdentifier getCreatedUserIdentifier();
 }

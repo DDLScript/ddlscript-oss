@@ -35,7 +35,7 @@ public abstract class AbstractAuthenticatedRoute<INPUT, OUTPUT> extends Abstract
 		// search for a user
 		var userModel = ControllerFactory.INSTANCE
 				.getUserController()
-				.find(sessionModel.getUserIdentifier())
+				.find(sessionModel.getCreatedUserIdentifier())
 				.filter(user -> !user.isArchived())
 				.orElseThrow();
 

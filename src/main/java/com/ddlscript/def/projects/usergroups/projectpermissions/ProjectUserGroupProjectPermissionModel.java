@@ -1,23 +1,14 @@
 package com.ddlscript.def.projects.usergroups.projectpermissions;
 
+import com.ddlscript.def.common.AuditedModel;
 import com.ddlscript.def.permissions.project.ProjectPermission;
 import com.ddlscript.def.projects.ProjectIdentifier;
 import com.ddlscript.def.usergroups.UserGroupIdentifier;
-import com.ddlscript.def.users.UserIdentifier;
-
-import java.time.Instant;
 
 /**
  * Represents a single System permission that has been granted to a user group for a specified project.
  */
-public interface ProjectUserGroupProjectPermissionModel {
-
-	/**
-	 * Returns the timestamp of when the permission was granted to the user group.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
+public interface ProjectUserGroupProjectPermissionModel extends AuditedModel {
 
 	/**
 	 * Returns the identifier of the project the user group has been granted a permission for.
@@ -39,11 +30,4 @@ public interface ProjectUserGroupProjectPermissionModel {
 	 * @return project permission
 	 */
 	ProjectPermission getProjectPermission();
-
-	/**
-	 * Returns the identifier of the user whom granted the permission.
-	 *
-	 * @return User Identifier.
-	 */
-	UserIdentifier getCreatedUserIdentifier();
 }
