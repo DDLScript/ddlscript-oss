@@ -40,6 +40,9 @@ dependencies {
     implementation 'commons-dbutils:commons-dbutils:1.7'
     implementation 'commons-validator:commons-validator:1.6'
     implementation 'io.leangen.graphql:spqr:0.10.1'
+    implementation 'io.swagger.core.v3:swagger-core:2.1.10' // OpenAPI
+    implementation 'io.swagger.core.v3:swagger-annotations:2.1.10' // OpenAPI
+    implementation 'io.swagger.core.v3:swagger-jaxrs2:2.1.10' // OpenAPI
     implementation 'org.apache.commons:commons-dbcp2:2.7.0'
     implementation 'org.apache.commons:commons-text:1.6'
     implementation 'org.reflections:reflections:0.9.12'
