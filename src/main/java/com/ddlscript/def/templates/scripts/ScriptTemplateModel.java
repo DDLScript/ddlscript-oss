@@ -1,5 +1,6 @@
 package com.ddlscript.def.templates.scripts;
 
+import com.ddlscript.def.common.AuditedModel;
 import com.ddlscript.def.projects.ProjectIdentifier;
 import com.ddlscript.def.projects.scripts.ScriptIdentifier;
 import com.ddlscript.def.users.UserIdentifier;
@@ -11,14 +12,7 @@ import java.util.Optional;
 /**
  * Script Template.
  */
-public interface ScriptTemplateModel extends Model {
-
-	/**
-	 * Returns the timestamp of when the template was created.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
+public interface ScriptTemplateModel extends Model, AuditedModel {
 
 	/**
 	 * Returns the timestamp of when the template was last updated.
@@ -74,13 +68,6 @@ public interface ScriptTemplateModel extends Model {
 	 * @return SQL.
 	 */
 	String getQuery();
-
-	/**
-	 * Returns the identifier of the user whom created the template.
-	 *
-	 * @return User Identifier.
-	 */
-	UserIdentifier getCreatedUserIdentifier();
 
 	/**
 	 * Returns the identifier of the user whom last updated the template.
