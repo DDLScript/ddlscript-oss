@@ -20,17 +20,17 @@ public class CollectionSchema<SCHEMA> {
 		return this.items.iterator();
 	}
 
-	@JsonProperty("count")
+	@JsonProperty("item_count")
 	public int getCount() {
 		return this.items.size();
 	}
 
-	@JsonProperty("pages")
+	@JsonProperty("page_count")
 	public int getPageCount() {
 		return this.items.getPageCount();
 	}
 
-	@JsonProperty("pageSize")
+	@JsonProperty("page_size")
 	public int getPageSize() {
 		return this.items.getPageSize();
 	}

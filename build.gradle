@@ -13,7 +13,7 @@ plugins {
 
 group = 'com.ddlscript'
 version = '0.0.0'
-mainClassName = 'com.ddlscript.spark.Bootstrap'
+mainClassName = 'com.ddlscript.Application'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
