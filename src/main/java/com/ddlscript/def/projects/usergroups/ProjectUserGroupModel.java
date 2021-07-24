@@ -1,22 +1,13 @@
 package com.ddlscript.def.projects.usergroups;
 
+import com.ddlscript.def.common.AuditedModel;
 import com.ddlscript.def.projects.ProjectIdentifier;
 import com.ddlscript.def.usergroups.UserGroupIdentifier;
-import com.ddlscript.def.users.UserIdentifier;
-
-import java.time.Instant;
 
 /**
  * Represents a single user group assigned to a project.
  */
-public interface ProjectUserGroupModel {
-
-	/**
-	 * Returns the timestamp of when the user group was added to the project.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
+public interface ProjectUserGroupModel extends AuditedModel {
 
 	/**
 	 * Returns the identifier of the project the user group is linked to.
@@ -32,10 +23,4 @@ public interface ProjectUserGroupModel {
 	 */
 	UserGroupIdentifier getUserGroupIdentifier();
 
-	/**
-	 * Returns the identifier of the user whom linked the user group to the project
-	 *
-	 * @return User Identifier.
-	 */
-	UserIdentifier getCreatedUserIdentifier();
 }

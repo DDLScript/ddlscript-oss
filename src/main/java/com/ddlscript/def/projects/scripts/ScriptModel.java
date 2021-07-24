@@ -1,5 +1,6 @@
 package com.ddlscript.def.projects.scripts;
 
+import com.ddlscript.def.common.AuditedModel;
 import com.ddlscript.def.projects.ProjectIdentifier;
 import com.ddlscript.def.users.UserIdentifier;
 import com.ddlscript.sdk.models.IdentifiableModel;
@@ -9,19 +10,12 @@ import java.time.Instant;
 /**
  * Represents a single project within the system.
  */
-public interface ScriptModel extends IdentifiableModel<ScriptIdentifier> {
+public interface ScriptModel extends IdentifiableModel<ScriptIdentifier>, AuditedModel {
 
 	/**
 	 * Maximum number of characters allowed in the TITLE field.
 	 */
 	int MAX_TITLE_LENGTH = 300;
-
-	/**
-	 * Returns the timestamp of when the project was created.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
 
 	/**
 	 * Returns the timestamp of when the project was lst updated.
@@ -50,13 +44,6 @@ public interface ScriptModel extends IdentifiableModel<ScriptIdentifier> {
 	 * @return Description the script.
 	 */
 	String getDescription();
-
-	/**
-	 * Returns the identifier of the user whom created the project.
-	 *
-	 * @return User Identifier.
-	 */
-	UserIdentifier getCreatedUserIdentifier();
 
 	/**
 	 * Returns the identifier of the user whom last updated the project.
