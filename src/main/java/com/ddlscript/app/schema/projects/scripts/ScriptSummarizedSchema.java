@@ -1,9 +1,8 @@
 package com.ddlscript.app.schema.projects.scripts;
 
-import com.ddlscript.def.projects.scripts.ScriptModel;
-import com.ddlscript.app.factories.ControllerFactory;
 import com.ddlscript.app.routes.AuthenticationContext;
-import com.ddlscript.app.schema.users.UserSummarizedSchema;
+import com.ddlscript.app.schema.common.AuditedSchema;
+import com.ddlscript.def.projects.scripts.ScriptModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
@@ -16,10 +15,10 @@ import java.util.Optional;
 /**
  * Summarized schema for scripts.
  */
-public class ScriptSummarizedSchema {
+public class ScriptSummarizedSchema implements AuditedSchema {
 
 	@JsonIgnore
-	@Getter(AccessLevel.PROTECTED)
+	@Getter
 	private final ScriptModel model;
 
 	@JsonIgnore
@@ -27,24 +26,22 @@ public class ScriptSummarizedSchema {
 	private final AuthenticationContext authenticationContext;
 
 
-	public ScriptSummarizedSchema(@NonNull final AuthenticationContext withAuthenticationContext, @NonNull final ScriptModel withModel) {
+	public ScriptSummarizedSchema(
+			@NonNull final AuthenticationContext withAuthenticationContext, @NonNull final ScriptModel withModel
+	) {
 		this.model = withModel;
 		this.authenticationContext = withAuthenticationContext;
 	}
 
 	@JsonProperty("id")
 	public int getId() {
-		return this.model.getIdentifier().getRawValue();
+		return this.model.getIdentifier()
+				.getRawValue();
 	}
 
 	@JsonProperty("title")
 	public String getTitle() {
 		return this.model.getTitle();
-	}
-
-	@JsonProperty("timestamp_created")
-	public String getTimestampCreated() {
-		return this.model.getTimestampCreated().toString();
 	}
 
 	@JsonProperty("timestamp_updated")
@@ -54,14 +51,4 @@ public class ScriptSummarizedSchema {
 				.map(Instant::toString)
 				.orElse(null);
 	}
-
-	@JsonProperty("created_by")
-	public UserSummarizedSchema getCreatedByUser() {
-		return ControllerFactory.INSTANCE
-				.getUserController()
-				.find(this.getModel().getCreatedUserIdentifier())
-				.map(UserSummarizedSchema::new)
-				.orElse(null);
-	}
-
 }

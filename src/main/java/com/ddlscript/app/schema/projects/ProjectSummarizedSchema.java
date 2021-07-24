@@ -1,16 +1,16 @@
 package com.ddlscript.app.schema.projects;
 
+import com.ddlscript.app.schema.common.TimestampCreatedSchema;
 import com.ddlscript.def.projects.ProjectModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 
-public class ProjectSummarizedSchema {
+public class ProjectSummarizedSchema implements TimestampCreatedSchema {
 
 	@JsonIgnore
-	@Getter(AccessLevel.PROTECTED)
+	@Getter
 	private final ProjectModel model;
 
 	public ProjectSummarizedSchema(@NonNull final ProjectModel withModel) {
@@ -19,7 +19,8 @@ public class ProjectSummarizedSchema {
 
 	@JsonProperty("id")
 	public int getId() {
-		return this.model.getIdentifier().getRawValue();
+		return this.model.getIdentifier()
+				.getRawValue();
 	}
 
 	@JsonProperty("name")
@@ -30,11 +31,6 @@ public class ProjectSummarizedSchema {
 	@JsonProperty("type")
 	public String getDatabaseType() {
 		return this.model.getDatabaseType();
-	}
-
-	@JsonProperty("timestamp_created")
-	public String getTimestampCreated() {
-		return this.model.getTimestampCreated().toString();
 	}
 
 }
