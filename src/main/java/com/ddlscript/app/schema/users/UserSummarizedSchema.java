@@ -1,29 +1,28 @@
 package com.ddlscript.app.schema.users;
 
+import com.ddlscript.app.schema.common.TimestampCreatedSchema;
 import com.ddlscript.def.users.UserModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
 import lombok.NonNull;
 
 /**
  * Summarized schema of a user.
  */
-public class UserSummarizedSchema {
+public class UserSummarizedSchema implements TimestampCreatedSchema {
 	@JsonIgnore
+	@Getter
 	private final UserModel model;
 
 	public UserSummarizedSchema(@NonNull final UserModel withModel) {
 		this.model = withModel;
 	}
 
-	@JsonProperty("timestamp_created")
-	public String getTimestampCreated() {
-		return this.model.getTimestampCreated().toString();
-	}
-
 	@JsonProperty("id")
 	public int getIdentifier() {
-		return this.model.getIdentifier().getRawValue();
+		return this.model.getIdentifier()
+				.getRawValue();
 	}
 
 	@JsonProperty("name")

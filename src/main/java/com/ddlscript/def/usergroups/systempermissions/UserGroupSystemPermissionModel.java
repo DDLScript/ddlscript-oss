@@ -1,22 +1,13 @@
 package com.ddlscript.def.usergroups.systempermissions;
 
+import com.ddlscript.def.common.AuditedModel;
 import com.ddlscript.def.permissions.system.SystemPermission;
 import com.ddlscript.def.usergroups.UserGroupIdentifier;
-import com.ddlscript.def.users.UserIdentifier;
-
-import java.time.Instant;
 
 /**
  * Represents a single System permission that has been granted to a user group.
  */
-public interface UserGroupSystemPermissionModel {
-
-	/**
-	 * Returns the timestamp of when the permission was granted to the user group.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
+public interface UserGroupSystemPermissionModel extends AuditedModel {
 
 	/**
 	 * Returns the identifier of the user group the permission has been granted to.
@@ -32,10 +23,4 @@ public interface UserGroupSystemPermissionModel {
 	 */
 	SystemPermission getSystemPermission();
 
-	/**
-	 * Returns the identifier of the user whom granted the permission.
-	 *
-	 * @return User Identifier.
-	 */
-	UserIdentifier getCreatedUserIdentifier();
 }

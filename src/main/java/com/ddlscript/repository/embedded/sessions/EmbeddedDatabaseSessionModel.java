@@ -23,15 +23,15 @@ public class EmbeddedDatabaseSessionModel extends AbstractEmbeddedDatabaseModel<
 	}
 
 	@Override
-	public UserIdentifier getUserIdentifier() {
-		return new UserIdentifier(this.getRowData()
-				.getUserId());
-	}
-
-	@Override
 	public Instant getTimestampCreated() {
 		return this.getRowData()
 				.getTimestampCreated()
 				.toInstant();
+	}
+
+	@Override
+	public UserIdentifier getCreatedUserIdentifier() {
+		return new UserIdentifier(this.getRowData()
+				.getUserId());
 	}
 }

@@ -1,21 +1,13 @@
 package com.ddlscript.def.usergroups.members;
 
+import com.ddlscript.def.common.AuditedModel;
 import com.ddlscript.def.usergroups.UserGroupIdentifier;
 import com.ddlscript.def.users.UserIdentifier;
-
-import java.time.Instant;
 
 /**
  * Represents a single user assigned to a user group.
  */
-public interface UserGroupMemberModel {
-
-	/**
-	 * Returns the timestamp of when the user was added to the user group.
-	 *
-	 * @return Creation timestamp.
-	 */
-	Instant getTimestampCreated();
+public interface UserGroupMemberModel extends AuditedModel {
 
 	/**
 	 * Returns the identifier of the user group the user is linked to.
@@ -31,10 +23,4 @@ public interface UserGroupMemberModel {
 	 */
 	UserIdentifier getUserIdentifier();
 
-	/**
-	 * Returns the identifier of the user whom linked the user to the user group
-	 *
-	 * @return User Identifier.
-	 */
-	UserIdentifier getCreatedUserIdentifier();
 }
