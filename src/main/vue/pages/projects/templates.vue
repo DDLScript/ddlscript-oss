@@ -1,54 +1,60 @@
 <template>
-	<h1 style='font-weight:600;font-size:1.5rem;'>Script Templates</h1>
-	<p style="padding:1rem 0;">Script templates allow you to add predefined snippets of code around each script and/or statement of a script within your project. Once a script is merged into the mainline a snapshot of the template is recorded against the merger to ensure no breaking changes are introduced to past scripts when the templates get updated.</p>
+	<ddlscript-element-panel class='ddlscript-component-panel-projectlist' hue="foreground" title="Script Templates">
+		<template v-slot:actions>
+			<ddlscript-element-button label="Save Changes" hue="positive" :disabled="!canSubmit" @click="onSaveClicked" />
+		</template>
 
-	<ddlscript-element-panel hue="foreground" title="Before Entire Script" style="margin-top:1rem;">
-		<ace-editor
-				v-model:value="updated_templates.before_all"
-				@init="editorInit"
-				lang="sql"
-				theme="cobalt"
-				:minLines="4"
-				:maxLines="999999"
-				style="height:10rem;padding-top:1rem;padding-bottom:1rem;" />
+		<p style="padding:1rem;">Script templates allow you to add predefined snippets of code around each script and/or statement of a script within your project. Once a script is merged into the mainline a snapshot of the template is recorded against the merger to ensure no breaking changes are introduced to past scripts when the templates get updated.</p>
+
+		<div hue="foreground" title="Before Entire Script" style="margin-top:1rem;">
+			<p style="padding:1rem;"><strong>Before Entire Script</strong></p>
+			<ace-editor
+					v-model:value="updated_templates.before_all"
+					@init="editorInit"
+					lang="sql"
+					theme="cobalt"
+					:minLines="4"
+					:maxLines="999999"
+					style="height:10rem;padding-top:1rem;padding-bottom:1rem;" />
+		</div>
+
+		<div hue="foreground" title="Before Each Statement" style="margin-top:1rem;">
+			<p style="padding:1rem;"><strong>Before Each Statement</strong></p>
+			<ace-editor
+					v-model:value="updated_templates.before_each"
+					@init="editorInit"
+					lang="sql"
+					theme="cobalt"
+					:minLines="4"
+					:maxLines="999999"
+					style="height:10rem;padding-top:1rem;padding-bottom:1rem;" />
+		</div>
+
+		<div hue="foreground" title="After Each Statement" style="margin-top:1rem;">
+			<p style="padding:1rem;"><strong>After Each Statement</strong></p>
+			<ace-editor
+					v-model:value="updated_templates.after_each"
+					@init="editorInit"
+					lang="sql"
+					theme="cobalt"
+					:minLines="4"
+					:maxLines="999999"
+					style="height:10rem;padding-top:1rem;padding-bottom:1rem;" />
+		</div>
+
+		<div hue="foreground" title="After Entire Script" style="margin-top:1rem;">
+			<p style="padding:1rem;"><strong>After Entire Script</strong></p>
+			<ace-editor
+					v-model:value="updated_templates.after_all"
+					@init="editorInit"
+					lang="sql"
+					theme="cobalt"
+					:minLines="4"
+					:maxLines="999999"
+					style="height:10rem;padding-top:1rem;padding-bottom:1rem;" />
+		</div>
+
 	</ddlscript-element-panel>
-
-	<ddlscript-element-panel hue="foreground" title="Before Each Statement" style="margin-top:1rem;">
-		<ace-editor
-				v-model:value="updated_templates.before_each"
-				@init="editorInit"
-				lang="sql"
-				theme="cobalt"
-				:minLines="4"
-				:maxLines="999999"
-				style="height:10rem;padding-top:1rem;padding-bottom:1rem;" />
-	</ddlscript-element-panel>
-
-	<ddlscript-element-panel hue="foreground" title="After Each Statement" style="margin-top:1rem;">
-		<ace-editor
-				v-model:value="updated_templates.after_each"
-				@init="editorInit"
-				lang="sql"
-				theme="cobalt"
-				:minLines="4"
-				:maxLines="999999"
-				style="height:10rem;padding-top:1rem;padding-bottom:1rem;" />
-	</ddlscript-element-panel>
-
-	<ddlscript-element-panel hue="foreground" title="After Entire Script" style="margin-top:1rem;">
-		<ace-editor
-				v-model:value="updated_templates.after_all"
-				@init="editorInit"
-				lang="sql"
-				theme="cobalt"
-				:minLines="4"
-				:maxLines="999999"
-				style="height:10rem;padding-top:1rem;padding-bottom:1rem;" />
-	</ddlscript-element-panel>
-
-	<div style="display:flex;justify-content:flex-end;align-items:center;padding:1rem 0;">
-		<ddlscript-element-button label="Save Changes" hue="positive" :disabled="!canSubmit" @click="onSaveClicked" />
-	</div>
 </template>
 
 <script>
