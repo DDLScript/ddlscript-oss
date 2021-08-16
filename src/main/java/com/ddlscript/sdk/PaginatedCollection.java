@@ -94,6 +94,11 @@ public class PaginatedCollection<E> implements Iterable<E> {
 			return this;
 		}
 
+		public Builder<E> addElement(final E withElement) {
+			this.request.elements.add(withElement);
+			return this;
+		}
+
 		public Builder<E> setPageSize(final int withPageSize) {
 			this.request.setPageSize(withPageSize);
 			return this;
