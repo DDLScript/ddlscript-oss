@@ -57,4 +57,28 @@ public class EmbeddedDatabaseProjectModel
 		return new UserIdentifier(this.getRowData()
 				.getUserIdCreated());
 	}
+
+	@Override
+	public String getTemplateBeforeAll() {
+		return this.getRowData()
+				.getTemplateBeforeAll();
+	}
+
+	@Override
+	public String getTemplateBeforeEach() {
+		return this.getRowData()
+				.getTemplateBeforeEach();
+	}
+
+	@Override
+	public String getTemplateAfterEach() {
+		return this.getRowData()
+				.getTemplateAfterEach();
+	}
+
+	@Override
+	public String getTemplateAfterAll() {
+		return this.getRowData()
+				.getTemplateAfterAll();
+	}
 }

@@ -4,5 +4,9 @@ SELECT TIMESTAMP_CREATED
           , NAME
           , DATABASE_TYPE
           , USER_ID_CREATED
+          , TEMPLATE_BEFORE_ALL
+          , TEMPLATE_BEFORE_EACH
+          , TEMPLATE_AFTER_EACH
+          , TEMPLATE_AFTER_ALL
 FROM `Project`
 WHERE ID = ?

@@ -90,10 +90,6 @@ export default {
 			error: null
 		},
 
-		updated_project: {
-			name: "",
-		},
-
 		updated_templates: {
 			before_all: "",
 			before_each: "",
@@ -115,7 +111,9 @@ export default {
 			this.is.submitting = true;
 
 			try {
-				await DDLScript.api.projects.update(this.project.id, this.updated_project);
+				await DDLScript.api.projects.update(this.project.id, {
+					templates: this.updated_templates
+				});
 				window.location.reload();
 			} catch (err) {
 				this.is.submitting = false;
@@ -129,12 +127,10 @@ export default {
 	},
 
 	mounted() {
-		this.project.templates.forEach(template => {
-			template.applied_to_each_statement && template.applied_after && (this.updated_templates.after_each = template.query);
-			template.applied_to_each_statement && !template.applied_after && (this.updated_templates.before_each = template.query);
-			!template.applied_to_each_statement && !template.applied_after && (this.updated_templates.before_all = template.query);
-			!template.applied_to_each_statement && template.applied_after && (this.updated_templates.after_all = template.query);
-		});
+		this.updated_templates.after_each = this.project.templates.after_each;
+		this.updated_templates.before_each = this.project.templates.before_each;
+		this.updated_templates.before_all = this.project.templates.before_all;
+		this.updated_templates.after_all = this.project.templates.after_all;
 	}
 }
 </script>

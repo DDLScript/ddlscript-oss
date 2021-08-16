@@ -29,4 +29,16 @@ public class ProjectRowData implements RowData {
 
 	@JsonSetter("USER_ID_CREATED")
 	private Integer userIdCreated;
+
+	@JsonSetter("TEMPLATE_BEFORE_ALL")
+	private String templateBeforeAll;
+
+	@JsonSetter("TEMPLATE_BEFORE_EACH")
+	private String templateBeforeEach;
+
+	@JsonSetter("TEMPLATE_AFTER_EACH")
+	private String templateAfterEach;
+
+	@JsonSetter("TEMPLATE_AFTER_ALL")
+	private String templateAfterAll;
 }

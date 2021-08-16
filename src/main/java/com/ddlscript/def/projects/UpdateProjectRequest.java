@@ -28,12 +28,40 @@ public class UpdateProjectRequest implements UpdatableRequest<ProjectModel> {
 	private String name;
 
 	/**
-	 * User whom is updating the project.
+	 * User who is updating the project.
 	 */
 	@Getter
 	@Setter
 	@NonNull
 	private UserModel userUpdated;
+
+	/**
+	 * SQL Template to appear at the start of each script.
+	 */
+	@Getter
+	@Setter
+	private String templateBeforeAll;
+
+	/**
+	 * SQL Template to appear before each statement on a script.
+	 */
+	@Getter
+	@Setter
+	private String templateBeforeEach;
+
+	/**
+	 * SQL Template to appear after each statement on a string.
+	 */
+	@Getter
+	@Setter
+	private String templateAfterEach;
+
+	/**
+	 * SQL Template to appear at the end of each script.
+	 */
+	@Getter
+	@Setter
+	private String templateAfterAll;
 
 	/**
 	 * Default Constructor.
@@ -49,9 +77,18 @@ public class UpdateProjectRequest implements UpdatableRequest<ProjectModel> {
 	private UpdateProjectRequest(@NonNull UpdateProjectRequest other) {
 		this.setName(other.getName());
 		this.setUserUpdated(other.getUserUpdated());
+		this.setTemplateAfterAll(other.getTemplateAfterAll());
+		this.setTemplateAfterEach(other.getTemplateAfterEach());
+		this.setTemplateBeforeAll(other.getTemplateBeforeAll());
+		this.setTemplateBeforeEach(other.getTemplateBeforeEach());
 	}
 
-	private void setName(@NonNull final String withName) {
+	private void setName(final String withName) {
+		if (withName == null) {
+			this.name = null;
+			return;
+		}
+
 		this.name = StringParser.of(withName)
 				.trim()
 				.assertMinimumLength(1)
@@ -65,13 +102,57 @@ public class UpdateProjectRequest implements UpdatableRequest<ProjectModel> {
 
 		private final UpdateProjectRequest request = new UpdateProjectRequest();
 
-		public Builder setName(@NonNull final String withName) {
+		public Builder setName(final String withName) {
 			this.request.setName(withName);
 			return this;
 		}
 
 		public Builder setUserUpdated(@NonNull final UserModel withModel) {
 			this.request.setUserUpdated(withModel);
+			return this;
+		}
+
+		/**
+		 * Defines the SQL Template to appear after each statement on a string.
+		 *
+		 * @param withTemplate SQL Template.
+		 * @return this builder instance to allow for method chaining.
+		 */
+		public Builder setTemplateAfterEach(final String withTemplate) {
+			this.request.setTemplateAfterEach(withTemplate);
+			return this;
+		}
+
+		/**
+		 * Defines the SQL Template to appear at the end of each script.
+		 *
+		 * @param withTemplate SQL Template.
+		 * @return this builder instance to allow for method chaining.
+		 */
+		public Builder setTemplateAfterAll(final String withTemplate) {
+			this.request.setTemplateAfterAll(withTemplate);
+			return this;
+		}
+
+		/**
+		 * Defines the SQL Template to appear before each statement on a script.
+		 *
+		 * @param withTemplate SQL Template.
+		 * @return this builder instance to allow for method chaining.
+		 */
+		public Builder setTemplateBeforeEach(final String withTemplate) {
+			this.request.setTemplateBeforeEach(withTemplate);
+			return this;
+		}
+
+		/**
+		 * Defines the SQL Template to appear at the start of each script.
+		 *
+		 * @param withTemplate SQL Template.
+		 * @return this builder instance to allow for method chaining.
+		 */
+		public Builder setTemplateBeforeAll(final String withTemplate) {
+			this.request.setTemplateBeforeAll(withTemplate);
 			return this;
 		}
 

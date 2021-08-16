@@ -146,6 +146,10 @@ public class EmbeddedDatabaseProjectController
 		super.update(
 				SQL_UPDATE
 				, withRequest.getName()
+				, withRequest.getTemplateBeforeAll()
+				, withRequest.getTemplateBeforeEach()
+				, withRequest.getTemplateAfterEach()
+				, withRequest.getTemplateAfterAll()
 				, withProject.getIdentifier()
 						.getRawValue()
 		);
