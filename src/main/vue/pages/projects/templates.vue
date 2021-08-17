@@ -4,6 +4,10 @@
 			<ddlscript-element-button label="Save Changes" hue="positive" :disabled="!canSubmit" @click="onSaveClicked" />
 		</template>
 
+		<div v-if="messages.error" data-hue="negative" style="text-align:center; padding: 1rem;">
+			{{ messages.error }}
+		</div>
+
 		<p style="padding:1rem;">Script templates allow you to add predefined snippets of code around each script and/or statement of a script within your project. Once a script is merged into the mainline a snapshot of the template is recorded against the merger to ensure no breaking changes are introduced to past scripts when the templates get updated.</p>
 
 		<div hue="foreground" title="Before Entire Script" style="margin-top:1rem;">
@@ -117,13 +121,11 @@ export default {
 				window.location.reload();
 			} catch (err) {
 				this.is.submitting = false;
-				this.messages.error = "Unable to save project settings.";
+				this.messages.error = "Unable to save project templates.";
 			}
 		},
 
-		async editorInit() {
-			console.log("EDITOR_INIT")
-		},
+		async editorInit() { },
 	},
 
 	mounted() {
