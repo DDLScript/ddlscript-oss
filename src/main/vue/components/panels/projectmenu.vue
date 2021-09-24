@@ -5,19 +5,15 @@
 		<ddlscript-element-accordionmenu-item label="Merge Requests" :href="'/projects/' + project.id + '/mergerequests'" />
 		<ddlscript-element-accordionmenu-item label="Mainline" :href="'/projects/' + project.id + '/mainline'" />
 
-		<hr v-if="showSettingsGroup" />
-
-		<ddlscript-element-accordionmenu-group label="Settings" v-if="showSettingsGroup">
-			<ddlscript-element-accordionmenu-item v-for="item in settingsItems" :key="item.label" :label="item.label" :href="item.href" />
-		</ddlscript-element-accordionmenu-group>
-
+	</ddlscript-element-panel>
+	<ddlscript-element-panel v-if="hasProject && showSettingsGroup" class='ddlscript-component-panel-projectmenu' hue="foreground" title="Project Settings">
+		<ddlscript-element-accordionmenu-item v-for="item in settingsItems" :key="item.label" :label="item.label" :href="item.href" />
 	</ddlscript-element-panel>
 </template>
 
 <script>
 import PanelElement from "../../elements/panel.vue";
 import AccordionMenuItem from "../../elements/accordionmenu/item.vue";
-import AccordionMenuGroup from "../../elements/accordionmenu/group.vue";
 
 export default {
 	name: 'ddlscript-component-panel-projectmenu',
@@ -25,7 +21,6 @@ export default {
 	components: {
 		'ddlscript-element-panel': PanelElement,
 		'ddlscript-element-accordionmenu-item': AccordionMenuItem,
-		'ddlscript-element-accordionmenu-group': AccordionMenuGroup,
 	},
 
 	props: {
