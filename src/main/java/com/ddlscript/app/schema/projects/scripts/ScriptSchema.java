@@ -7,9 +7,9 @@ import lombok.NonNull;
 public class ScriptSchema extends ScriptSummarizedSchema {
 
 	public ScriptSchema(
-			@NonNull final AuthenticationContext withAuthenticationContext, @NonNull final ScriptModel withModel
+			@NonNull final AuthenticationContext withAuthenticationContext
+			, @NonNull final ScriptModel withModel
 	) {
 		super(withAuthenticationContext, withModel);
 	}
-
 }

@@ -24,7 +24,6 @@ public class ProjectsApiRouteGroup implements RouteGroup {
 			Spark.path("/scripts", () -> {
 				Spark.get("", new ListScriptRoute());
 				Spark.post("", new PostScriptRoute());
-
 			});
 		});
 	}

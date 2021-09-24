@@ -35,4 +35,34 @@ public interface ProjectModel extends IdentifiableModel<ProjectIdentifier>, Audi
 	 * @return database type.
 	 */
 	String getDatabaseType();
+
+	/**
+	 * Returns the query template to apply before every script.
+	 *
+	 * @return SQL query template.
+	 */
+	String getTemplateBeforeAll();
+
+	/**
+	 * Returns the query template to apply before each statement on a script
+	 *
+	 * @return SQL query template.
+	 */
+	String getTemplateBeforeEach();
+
+	/**
+	 * Returns the query template to aplly after each statement on a script.
+	 *
+	 * @return SQL query template.
+	 */
+	String getTemplateAfterEach();
+
+	/**
+	 * Returns the query template to apply after every script.
+	 *
+	 * @return SQL query template.
+	 */
+	String getTemplateAfterAll();
+
+
 }

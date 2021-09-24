@@ -25,12 +25,22 @@ export default (DDLScript) => ({
 		}
 	),
 
-	update: async (project_id, payload) => await DDLScript.patch(
-		"/projects/" + project_id
-		, {}
-		, {
-			name: payload.name
+	update: async (project_id, payload) => {
+		const _payload = {};
+
+		if (payload.name) {
+			_payload.name = payload.name;
 		}
-	),
+
+		if (payload.templates) {
+			_payload.templates = payload.templates;
+		}
+
+		return await DDLScript.patch(
+			"/projects/" + project_id
+			, {}
+			, _payload
+		);
+	},
 
 });

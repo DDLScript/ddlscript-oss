@@ -9,6 +9,7 @@ import org.h2.tools.Server;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -35,6 +36,9 @@ public enum DataSourceFactory {
 				.addShutdownHook(new DatabaseShutdownThread());
 	}
 
+	public Optional<DataSource> optDataSource() {
+		return Optional.ofNullable(this.getDataSource());
+	}
 
 	private void startDatabaseServer() {
 		LOGGER.info("Starting Embedded Database Server");

@@ -4,6 +4,10 @@ SELECT DISTINCT __P__.TIMESTAMP_CREATED
           , __P__.NAME
           , __P__.DATABASE_TYPE
           , __P__.USER_ID_CREATED
+          , __P__.TEMPLATE_BEFORE_ALL
+          , __P__.TEMPLATE_BEFORE_EACH
+          , __P__.TEMPLATE_AFTER_EACH
+          , __P__.TEMPLATE_AFTER_ALL
 FROM `Project` __P__
 
 INNER JOIN (
