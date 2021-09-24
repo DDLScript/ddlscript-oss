@@ -13,6 +13,7 @@ target/
 build/
 jar/
 data/
+bin/
 
 src/main/resources/webroot/css/
 src/main/resources/webroot/js/
