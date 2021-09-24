@@ -23,35 +23,35 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.16' // LomBok Project
-    annotationProcessor 'org.projectlombok:lombok:1.18.16' // LomBok Project
+    compileOnly 'org.projectlombok:lombok:1.18.20' // LomBok Project
+    annotationProcessor 'org.projectlombok:lombok:1.18.20' // LomBok Project
 
     implementation 'at.favre.lib:bcrypt:0.9.0'
-    implementation 'com.bugsnag:bugsnag:3.6.1'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.1'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.1'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.12.1'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.1'
-    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.12.1'
+    implementation 'com.bugsnag:bugsnag:3.6.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.5'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.12.5'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.12.5'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.5'
+    implementation 'com.fasterxml.jackson.module:jackson-module-parameter-names:2.12.5'
     implementation 'com.github.rjeschke:txtmark:0.13'
     implementation 'com.h2database:h2:1.4.200' // H2 Embedded Database
-    implementation 'com.sparkjava:spark-core:2.9.2'
+    implementation 'com.sparkjava:spark-core:2.9.3'
     implementation 'commons-dbutils:commons-dbutils:1.7'
-    implementation 'commons-validator:commons-validator:1.6'
-    implementation 'io.leangen.graphql:spqr:0.10.1'
+    implementation 'commons-validator:commons-validator:1.7'
+    implementation 'io.leangen.graphql:spqr:0.11.2'
     implementation 'io.swagger.core.v3:swagger-core:2.1.10' // OpenAPI
     implementation 'io.swagger.core.v3:swagger-annotations:2.1.10' // OpenAPI
     implementation 'io.swagger.core.v3:swagger-jaxrs2:2.1.10' // OpenAPI
-    implementation 'org.apache.commons:commons-dbcp2:2.7.0'
-    implementation 'org.apache.commons:commons-text:1.6'
+    implementation 'org.apache.commons:commons-dbcp2:2.8.0'
+    implementation 'org.apache.commons:commons-text:1.9'
     implementation 'org.reflections:reflections:0.9.12'
 
-    testCompileOnly 'org.projectlombok:lombok:1.18.16' // LomBok Project
-    testAnnotationProcessor 'org.projectlombok:lombok:1.18.16' // LomBok Project
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.0'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20' // LomBok Project
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20' // LomBok Project
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.0'
 }
 
 java {
@@ -224,10 +224,10 @@ task bumpVersion {
         println "Bumping version number..."
 
         def date = new Date()
-        def calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        int currentYear = calendar.get(Calendar.YEAR);
-        int currentMonth = calendar.get(Calendar.MONTH) + 1;
+        def calendar = Calendar.getInstance()
+        calendar.setTime(date)
+        int currentYear = calendar.get(Calendar.YEAR)
+        int currentMonth = calendar.get(Calendar.MONTH) + 1
 
 
         String previousVersion = version
@@ -256,6 +256,6 @@ task bumpVersion {
 task gitTag {
     doLast {
         def cmd = "git tag $version"
-        println cmd.execute().text.trim();
+        println cmd.execute().text.trim()
     }
 }
