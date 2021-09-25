@@ -1,9 +1,9 @@
 <template>
 	<ddlscript-element-globalheader />
 	<router-view />
-	<div style='padding:2rem 1rem 4rem;opacity:0.666;text-align:center;'>
+	<footer style='padding:2rem 1rem 4rem;opacity:0.666;text-align:center;'>
 		<small>Copyright &copy; 2017-{{ new Date().getFullYear() }} DDL Script.<br />DDL Script is open source and can be forked on <a href='https://github.com/ddlscript/ddlscript-oss' target='_blank' style='text-decoration:underline;'>GitHub</a></small>
-	</div>
+	</footer>
 </template>
 
 <script>
