@@ -4,4 +4,11 @@
 	flex-wrap: nowrap;
 	align-items: center;
 	justify-content: center;
+
+	&[data-size=normal] {
+		max-width: 88rem;
+		width: 100%;
+		display: block;
+		margin: auto;
+	}
 }
