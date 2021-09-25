@@ -1,28 +1,30 @@
 <template>
-	<ddlscript-element-panel hue="foreground" title="Scripts">
-		<template v-slot:actions>
-			<select v-model="filter.author" @change="onFilterChanged" style="width:15rem;margin-right:0.25rem;">
-				<option value="ALL">Everyone's Requests</option>
-				<option value="MINE">My Own Requests</option>
-			</select>
-			<select v-model="filter.status" @change="onFilterChanged" style="width:10rem;margin-right:0.25rem;">
-				<option value="OPEN">Open</option>
-				<option value="MERGED">Merged</option>
-				<option value="ALL">Any</option>
-			</select>
-			<ddlscript-element-button v-if="canCreateScripts" label="Create Script" hue="primary" @click="onCreateScriptClicked" />
-		</template>
+	<ddlscript-layout-center size="normal" style="padding-top:2rem;">
+		<ddlscript-element-panel hue="foreground" title="Scripts">
+			<template v-slot:actions>
+				<select v-model="filter.author" @change="onFilterChanged" style="width:15rem;margin-right:0.25rem;">
+					<option value="ALL">Everyone's Requests</option>
+					<option value="MINE">My Own Requests</option>
+				</select>
+				<select v-model="filter.status" @change="onFilterChanged" style="width:10rem;margin-right:0.25rem;">
+					<option value="OPEN">Open</option>
+					<option value="MERGED">Merged</option>
+					<option value="ALL">Any</option>
+				</select>
+				<ddlscript-element-button v-if="canCreateScripts" label="Create Script" hue="primary" @click="onCreateScriptClicked" />
+			</template>
 
-		<div v-if="is.loading" style='padding:4rem 0;text-align:center;'>
-			<ddlscript-element-busyspinner />
-		</div>
+			<div v-if="is.loading" style='padding:4rem 0;text-align:center;'>
+				<ddlscript-element-busyspinner />
+			</div>
 
-		<ddlscript-element-emptystate v-if="!is.loading && !scripts.length" title="No Scripts Found">
-			<span>Refine your filters and try again.</span>
-		</ddlscript-element-emptystate>
+			<ddlscript-element-emptystate v-if="!is.loading && !scripts.length" title="No Scripts Found">
+				<span>Refine your filters and try again.</span>
+			</ddlscript-element-emptystate>
 
-		<ddlscript-component-scriptlistitem v-for="script in scripts" :key="script.id" :project="project" :script="script" />
-	</ddlscript-element-panel>
+			<ddlscript-component-scriptlistitem v-for="script in scripts" :key="script.id" :project="project" :script="script" />
+		</ddlscript-element-panel>
+	</ddlscript-layout-center>
 </template>
 
 <script>
@@ -33,6 +35,8 @@ import PanelElement from "../../elements/panel.vue";
 import BusySpinnerElement from "../../elements/busyspinner.vue";
 import ButtonElement from "../../elements/button.vue";
 import EmptyStateElement from "../../elements/emptystate.vue";
+
+import CenterLayout from "../../layouts/center.vue";
 
 import CreateScriptModal from "../../components/modals/createscript.vue";
 import ScriptListItemComponent from "../../components/scriptlistitem.vue";
@@ -45,6 +49,7 @@ export default {
 		'ddlscript-element-busyspinner': BusySpinnerElement,
 		'ddlscript-element-button': ButtonElement,
 		'ddlscript-element-emptystate': EmptyStateElement,
+		'ddlscript-layout-center': CenterLayout,
 		'ddlscript-component-scriptlistitem': ScriptListItemComponent
 	},
 
