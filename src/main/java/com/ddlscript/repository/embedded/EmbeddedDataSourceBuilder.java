@@ -44,8 +44,12 @@ public class EmbeddedDataSourceBuilder {
 	public DataSource build() {
 		Path currentRelativePath = Paths.get(this.directory + this.fileName)
 				.toAbsolutePath();
+//		String databaseUrl = "jdbc:h2:file:" + currentRelativePath;
+		String databaseUrl = "jdbc:h2:" + currentRelativePath + ";DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE";
+		System.out.println("Database URL: " + databaseUrl);
+
 		BasicDataSource basicDataSource = new BasicDataSource();
-		basicDataSource.setUrl("jdbc:h2:file:" + currentRelativePath);
+		basicDataSource.setUrl(databaseUrl);
 		basicDataSource.setTestOnCreate(true);
 		basicDataSource.setTestOnBorrow(true);
 		return basicDataSource;
