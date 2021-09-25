@@ -1,5 +1,10 @@
 <template>
-	<ddlscript-component-pageheader v-if="!is.loading && !is.error" :tabs="navigationTabs" />
+	<ddlscript-component-pageheader
+		v-if="!is.loading && !is.error"
+		:heading="project.name"
+		:tabs="navigationTabs"
+		:breadcrumbs="breadcrumbs"
+		/>
 
 	<!-- Loading project details -->
 	<div v-if="is.loading" style='padding:4rem 0;text-align:center;'>
@@ -10,23 +15,13 @@
 	<div v-if="!is.loading && is.error">Unable to load project.</div>
 
 	<!-- project successfully loaded -->
-	<ddlscript-layout-threecolumn v-if="!is.loading && !is.error">
-		<template v-slot:nav>
-			<ddlscript-component-panel-projectmenu :project="project" />
-		</template>
-
-		<router-view :project="project" />
-	</ddlscript-layout-threecolumn>
+	<router-view v-if="!is.loading && !is.error" :project="project" />
 </template>
 
 <script>
 import DDLScript from "../api";
 
 import BusySpinnerElement from "../elements/busyspinner.vue";
-
-import ThreeColumnLayout from "../layouts/threecolumn.vue";
-
-import ProjectMenuPanelComponent from "../components/panels/projectmenu.vue";
 import PageHeaderComponent from "../components/pageheader.vue";
 
 export default {
@@ -34,10 +29,6 @@ export default {
 
 	components: {
 		'ddlscript-element-busyspinner': BusySpinnerElement,
-
-		'ddlscript-layout-threecolumn': ThreeColumnLayout,
-
-		'ddlscript-component-panel-projectmenu': ProjectMenuPanelComponent,
 		'ddlscript-component-pageheader': PageHeaderComponent,
 	},
 
@@ -58,8 +49,19 @@ export default {
 
 	computed: {
 
+		breadcrumbs() {
+			const items = [];
+
+			items.push({
+				label: "Dashboard",
+				href: "/"
+			});
+
+			return items;
+		},
+
 		navigationTabs() {
-			var items = [];
+			const items = [];
 
 			items.push({
 				label: "Scripts"
